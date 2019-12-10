@@ -1,0 +1,38 @@
+alias s="secret" # Calls my secret manager
+
+### Origo
+alias oactivate="source $OK_DIR/developer-portal-local-runtime/bin/activate" # Sets local environment
+alias cdo="cd $OK_DIR" # cd origo dir
+alias cdok="cd $OK_DIR/kryptert_dokumentasjon" # cd kryptert
+alias cdob="cd $OK_DIR/api-catalog-backend/backend" # cd backend
+alias cdod="cd $OK_DIR/developer-portal-frontend" # cd frontend
+
+# Activate VPN
+alias oslvpn='sudo openconnect --user=byr306134 fa-lev.oslo.kommune.no'
+
+# Shortcuts
+alias C='clear' # Clears the screen
+alias tree='tree -I "*.pyc|__pycache__"' # Shows a tidy tree, needs tree installed
+#alias ls='ls -G --hide="*.pyc" --hide="__pycache__" --hide="node_modules" --hide="__init__.py" --hide="package-lock.json"' # Cleans ls output. Doesnt work on mac
+alias ls='ls -G'
+alias la='ls -a' # ls all
+alias ll='ls -l' # ls list
+alias greptext='grep -Rln' # Looks for text recursively 
+alias vi='vim' # vim is not always available. And shorter
+alias bwlogin="bw unlock | grep export | cut -d'\"' -f2 - > ~/.bwsession" # Logs into Bitwarden CLI
+alias bw="bw --session $(cat ~/.bwsession)" # Prefixes bw commands with current session
+
+# Git
+alias gs='git status'
+alias gd='git diff'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+
+# Docker
+alias dc='docker-compose' # You can now type dc up -d
+
+# Kubernetes
+alias klogin="$OK_DIR/k8s-scripts/k8s-auth-client.sh" # Logs into Kubernetes
+alias ksys="export KUBENAMESPACE=kube-system" # Sets the current namespace to kube-system (requires my k command to take full advantage)
+alias kwatch="watch kubectl get pods" # Watches pods

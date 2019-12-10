@@ -1,0 +1,13 @@
+#!/bin/bash
+mkcd() { mkdir -p "$@" && cd "$_"; }
+scratch() { mkdir -p "/tmp/scratchfolder" && cd "/tmp/scratchfolder" }
+
+##################################################
+##### Helm
+##################################################
+h() {
+  # Gotten from Yngvar Kristiansen
+  CURRENT_NAMESPACE=`kubectl config view --minify --output 'jsonpath={..namespace}'`
+  echo Using namespace for helm: $CURRENT_NAMESPACE
+  helm --tiller-namespace=$CURRENT_NAMESPACE $@
+}
