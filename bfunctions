@@ -11,3 +11,11 @@ h() {
   echo Using namespace for helm: $CURRENT_NAMESPACE
   helm --tiller-namespace=$CURRENT_NAMESPACE $@
 }
+
+##################################################
+##### Kubernetes
+##################################################
+#alias kset2="export KUBECONFIG=~/.kube/configs/$1.yaml"
+kset() {
+  export KUBECONFIG=~/.kube/configs/$1.yaml
+}

@@ -36,3 +36,6 @@ alias dc='docker-compose' # You can now type dc up -d
 alias klogin="$OK_DIR/k8s-scripts/k8s-auth-client.sh" # Logs into Kubernetes
 alias ksys="export KUBENAMESPACE=kube-system" # Sets the current namespace to kube-system (requires my k command to take full advantage)
 alias kwatch="watch kubectl get pods" # Watches pods
+
+# Python
+alias venv="python3 -m venv .venv"
