@@ -1,8 +1,10 @@
 #!/bin/bash
-ln balias ~/.balias
-ln bfunctions ~/.bfunctions
+ln aliases ~/.aliases
+ln functions ~/.functions
+ln vimrc ~/.vimrc
 
 mkdir -p ~/.local/bin
+mkdir -p ~/.config
 
 infect() {
   echo ". ~/.balias" >> $1
