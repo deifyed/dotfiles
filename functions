@@ -1,6 +1,7 @@
 #!/bin/bash
 mkcd() { mkdir -p "$@" && cd "$_"; }
 scratch() { mkdir -p "/tmp/scratchfolder" && cd "/tmp/scratchfolder" }
+sman() { curl cht.sh/$1 }
 
 ##################################################
 ##### Helm
@@ -18,4 +19,7 @@ h() {
 #alias kset2="export KUBECONFIG=~/.kube/configs/$1.yaml"
 kset() {
   export KUBECONFIG=~/.kube/configs/$1.yaml
+}
+knset() {
+  export KUBENAMESPACE=$1
 }

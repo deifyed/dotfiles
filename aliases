@@ -1,23 +1,33 @@
+## Servers
+alias rancher="ssh -i ~/.ssh/develish_rsa tsu@139.162.142.115"
+
 alias s="secret" # Calls my secret manager
+alias byr="s -p webmail/"
+alias ctemplar="s -p 'ctemplar mail'"
+
+alias myip="curl http://icanhazip.com"
 
 ### Origo
 alias oactivate="source $OK_DIR/developer-portal-local-runtime/bin/activate" # Sets local environment
 alias cdo="cd $OK_DIR" # cd origo dir
 alias cdok="cd $OK_DIR/kryptert_dokumentasjon" # cd kryptert
 alias cdob="cd $OK_DIR/api-catalog-backend/backend" # cd backend
+alias cdoc="cd $OK_DIR/developer-portal-charts" # cd charts
 alias cdod="cd $OK_DIR/developer-portal-frontend" # cd frontend
+alias cdog="cd $OK_DIR/gatekeeper"
 
 # Activate VPN
+alias cats="pygmentize -g -O style=solarized-dark,linenos=1"
 alias oslvpn='sudo openconnect --user=byr306134 fa-lev.oslo.kommune.no'
 
 # Shortcuts
 alias C='clear' # Clears the screen
-alias tree='tree -I "*.pyc|__pycache__"' # Shows a tidy tree, needs tree installed
+alias tree='tree -I "*.pyc|__pycache__|node_modules"' # Shows a tidy tree, needs tree installed
 #alias ls='ls -G --hide="*.pyc" --hide="__pycache__" --hide="node_modules" --hide="__init__.py" --hide="package-lock.json"' # Cleans ls output. Doesnt work on mac
 alias ls='ls -G'
-alias la='ls -a' # ls all
-alias ll='ls -l' # ls list
-alias greptext='grep -Rln' # Looks for text recursively 
+alias la='ls -ah' # ls all
+alias ll='ls -lh' # ls list
+alias greptext='grep -Rln' # Looks for text recursively
 alias vi='vim' # vim is not always available. And shorter
 alias bwlogin="bw unlock | grep export | cut -d'\"' -f2 - > ~/.bwsession" # Logs into Bitwarden CLI
 alias bw="bw --session $(cat ~/.bwsession)" # Prefixes bw commands with current session
@@ -31,6 +41,11 @@ alias gp='git push'
 
 # Docker
 alias dc='docker-compose' # You can now type dc up -d
+alias redis='docker run --rm -p 6379:6379 --name redis -d redis' # Starts redis
+alias keycloak='docker run --rm -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -p 5000:8080 --name keycloak -d jboss/keycloak'
+
+# Terraform
+alias tf="terraform"
 
 # Kubernetes
 alias klogin="$OK_DIR/k8s-scripts/k8s-auth-client.sh" # Logs into Kubernetes
@@ -39,3 +54,5 @@ alias kwatch="watch kubectl get pods" # Watches pods
 
 # Python
 alias venv="python3 -m venv .venv"
+
+alias glogin="cat token.txt| docker login docker.pkg.github.com -u deifyed@ctemplar.com --password-stdin"
