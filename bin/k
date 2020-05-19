@@ -1,0 +1,4 @@
+#!/bin/sh
+[[ ! -z "${KUBENAMESPACE}" ]] && ARGS="-n ${KUBENAMESPACE}" || ARGS=""
+
+kubectl ${ARGS} $@
