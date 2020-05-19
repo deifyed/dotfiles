@@ -1,4 +1,5 @@
 ### Structure
-Aliases go in in ~/.balias
+Aliases go in in ~/.aliases
+Functions go in ~/.functions
 
-Functions go in ~/.bfunctions
+./infect.sh to push all unpushed files out into the system

@@ -1,16 +1,18 @@
 #!/bin/bash
-ln aliases ~/.aliases
-ln functions ~/.functions
-ln vimrc ~/.vimrc
+ln aliases ~/.aliases || true
+ln functions ~/.functions || true
+ln vimrc ~/.vimrc || true
+ln zshrc ~/.zshrc || true
 
 mkdir -p ~/.local/bin
 mkdir -p ~/.config
 
 infect() {
-  echo ". ~/.balias" >> $1
-  echo ". ~/.bfunctions" >> $1
+	# Not needed since I'm storing my .zshrc
+  echo ". ~/.aliases" >> $1
+  echo ". ~/.functions" >> $1
   echo "export PATH=$PATH:~/.local/bin" >> $1
 }
 
-[ -f "~/.bashrc" ] && infect ~/.bashrc
-[ -f "~/.zshrc" ] && infect ~/.zshrc
+#[ -f "~/.bashrc" ] && infect ~/.bashrc
+#[ -f "~/.zshrc" ] && infect ~/.zshrc
