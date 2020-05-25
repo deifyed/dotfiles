@@ -32,7 +32,7 @@ filetype plugin indent on
 au BufReadPost,BufNewFile *.vue setlocal filetype=javascript syntax=html
 
 " FZF
-set rtp+=/usr/local/opt/fzf
+set rtp+=/usr/bin/fzf
 map ; :Files<CR>
 
 " netrw tree :Explore
@@ -41,11 +41,13 @@ let g:netrw_browse_split = 4 " Use previous window to open file
 let g:netrw_winsize = -28
 let g:netrw_liststyle = 3 " Tree view
 
-augroup ProjectDrawer
-  autocmd!
-  autocmd VimEnter * :Lexplore
-	autocmd VimEnter * :wincmd w
-augroup END
+"augroup ProjectDrawer
+"  autocmd!
+"  autocmd VimEnter * :Lexplore
+"	autocmd VimEnter * :wincmd w
+"augroup END
 map <leader>t :Lexplore<CR>
+
+abbrev clog console.log(')<esc>hi
 
 execute pathogen#infect()

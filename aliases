@@ -21,10 +21,11 @@ alias cats="pygmentize -g -O style=solarized-dark,linenos=1"
 alias oslvpn='sudo openconnect --user=byr306134 fa-lev.oslo.kommune.no'
 
 # Shortcuts
+alias off='shutdown -h now'
+alias highwind='sudo netctl start highwind'
 alias C='clear' # Clears the screen
 alias tree='tree -I "*.pyc|__pycache__|node_modules"' # Shows a tidy tree, needs tree installed
-#alias ls='ls -G --hide="*.pyc" --hide="__pycache__" --hide="node_modules" --hide="__init__.py" --hide="package-lock.json"' # Cleans ls output. Doesnt work on mac
-alias ls='ls -G'
+alias ls='ls -G --color --hide="*.pyc" --hide="__pycache__" --hide="node_modules" --hide="__init__.py" --hide="package-lock.json" --hide="CODE_OF_CONDUCT.md" --hide="LICENSE" ' # Cleans ls output. Doesnt work on mac
 alias la='ls -ah' # ls all
 alias ll='ls -lh' # ls list
 alias greptext='grep -Rln' # Looks for text recursively
@@ -56,3 +57,4 @@ alias kwatch="watch kubectl get pods" # Watches pods
 alias venv="python3 -m venv .venv"
 
 alias glogin="cat token.txt| docker login docker.pkg.github.com -u deifyed@ctemplar.com --password-stdin"
+alias current_focus="swaymsg -t get_tree | jq -r '..|try select(.focused == true)'"

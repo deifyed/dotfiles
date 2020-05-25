@@ -1,15 +1,25 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-export LC_ALL=en_US.UTF-8
-
 # Path to your oh-my-zsh installation.
 export ZSH="/home/deifyed/.oh-my-zsh"
 
-export PATH=/home/deifyed/.local/bin:$PATH
+export OK_DIR=/home/deifyed/origo
 
-. ~/.aliases
-. ~/.functions
+# Setting env
+export LC_ALL=en_US.UTF-8
+export EDITOR=vim
+
+export XDG_DESKTOP_DIR="/home/deifyed"
+export XDG_DOWNLOAD_DIR="/home/deifyed/downloads"
+
+export PATH=/home/deifyed/.local/bin:/home/deifyed/.local/share/npm/modules/bin:$PATH
+
+source ~/.aliases
+source ~/.functions
+
+# Fix java applications in wayland
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -81,6 +91,7 @@ plugins=(
 	kubectl
 	zsh-vim-mode
 	fzf
+	emoji-cli
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -88,16 +99,6 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
- else
-   export EDITOR='vim'
- fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -111,3 +112,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source /usr/share/nvm/init-nvm.sh
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/mcli mcli
