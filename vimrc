@@ -21,7 +21,7 @@ autocmd BufWritePre * %s/\s\+$//e
 """ UI
 set number 	        " Line numbers
 set background=dark " Better solarized compatibility in dark mode
-set textwidth=81 	" Line width
+set textwidth=80 	" Line width
 
 let g:solarized_termcolors=16
 colorscheme solarized
@@ -29,17 +29,20 @@ colorscheme solarized
 """ Syntax
 syntax enable
 filetype plugin indent on
-au BufReadPost,BufNewFile *.vue setlocal filetype=javascript syntax=html
+"au BufReadPost,BufNewFile *.vue setlocal filetype=javascript syntax=html
 
 " FZF
 set rtp+=/usr/bin/fzf
-map ; :Files<CR>
+map ; :GFiles<CR>
 
 " netrw tree :Explore
 let g:netrw_banner = 0
 let g:netrw_browse_split = 4 " Use previous window to open file
 let g:netrw_winsize = -28
 let g:netrw_liststyle = 3 " Tree view
+
+" showing invisible chars
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 
 "augroup ProjectDrawer
 "  autocmd!

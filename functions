@@ -12,6 +12,11 @@ h() {
   echo Using namespace for helm: $CURRENT_NAMESPACE
   helm --tiller-namespace=$CURRENT_NAMESPACE $@
 }
+h3() {
+  CURRENT_NAMESPACE=`kubectl config view --minify --output 'jsonpath={..namespace}'`
+  echo Using namespace for helm: $CURRENT_NAMESPACE
+  /usr/bin/helm --namespace=$CURRENT_NAMESPACE $@
+}
 
 ##################################################
 ##### Kubernetes
@@ -20,6 +25,19 @@ h() {
 kset() {
   export KUBECONFIG=~/.kube/configs/$1.yaml
 }
+ksethere() {
+	export KUBECONFIG=${PWD}/kubeconfig.yaml
+}
 knset() {
   export KUBENAMESPACE=$1
+}
+
+vin() {
+	mkdir -p /tmp/vinotes
+	mkdir -p ~/life/Notes/vinotes
+
+	NPATH=$(date +%F-%H-%M-%S)
+	vi /tmp/vinotes/${NPATH}
+
+	mv /tmp/vinotes/${NPATH} ~/life/notes/vinotes/${NPATH}.md
 }

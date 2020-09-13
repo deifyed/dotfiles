@@ -1,6 +1,3 @@
-## Servers
-alias rancher="ssh -i ~/.ssh/develish_rsa tsu@139.162.142.115"
-
 alias s="secret" # Calls my secret manager
 alias byr="s -p webmail/"
 alias ctemplar="s -p 'ctemplar mail'"
@@ -17,7 +14,6 @@ alias cdod="cd $OK_DIR/developer-portal-frontend" # cd frontend
 alias cdog="cd $OK_DIR/gatekeeper"
 
 # Activate VPN
-alias cats="pygmentize -g -O style=solarized-dark,linenos=1"
 alias oslvpn='sudo openconnect --user=byr306134 fa-lev.oslo.kommune.no'
 
 # Shortcuts
@@ -50,11 +46,13 @@ alias tf="terraform"
 
 # Kubernetes
 alias klogin="$OK_DIR/k8s-scripts/k8s-auth-client.sh" # Logs into Kubernetes
-alias ksys="export KUBENAMESPACE=kube-system" # Sets the current namespace to kube-system (requires my k command to take full advantage)
 alias kwatch="watch kubectl get pods" # Watches pods
+alias kns="kubens"
 
 # Python
 alias venv="python3 -m venv .venv"
 
 alias glogin="cat token.txt| docker login docker.pkg.github.com -u deifyed@ctemplar.com --password-stdin"
-alias current_focus="swaymsg -t get_tree | jq -r '..|try select(.focused == true)'"
+
+# Tildetown
+alias tildetown="ssh -i ~/.ssh/tildetown_rsa deifyed@tilde.town"

@@ -8,18 +8,28 @@ export OK_DIR=/home/deifyed/origo
 
 # Setting env
 export LC_ALL=en_US.UTF-8
+export GOPATH=/home/deifyed/.local/lib/go
 export EDITOR=vim
+export VDIRSYNCER_CONFIG=/home/deifyed/life/contacts/.vdirsyncer/config
 
-export XDG_DESKTOP_DIR="/home/deifyed"
-export XDG_DOWNLOAD_DIR="/home/deifyed/downloads"
+USER_HOME="/home/deifyed"
+export XDG_DESKTOP_DIR="/tmp"
+export XDG_DOWNLOAD_DIR="${USER_HOME}/downloads"
+export XDG_CONFIG_HOME="${USER_HOME}/.config"
+
+export HELM_HOME="${USER_HOME}/.config/helm"
 
 export PATH=/home/deifyed/.local/bin:/home/deifyed/.local/share/npm/modules/bin:$PATH
+export RPI="10.58.25.238"
 
 source ~/.aliases
 source ~/.functions
 
 # Fix java applications in wayland
 export _JAVA_AWT_WM_NONREPARENTING=1
+
+# Keys
+#eval $(keychain --eval --quiet --agents gpg,ssh)
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
