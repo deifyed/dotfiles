@@ -1,39 +1,39 @@
 alias s="secret" # Calls my secret manager
-alias byr="s -p webmail/"
-alias ctemplar="s -p 'ctemplar mail'"
 
 alias myip="curl http://icanhazip.com"
 
 ### Origo
+alias oslvpn='sudo openconnect --user=OOO306134 fa-lev.oslo.kommune.no'
 alias oactivate="source $OK_DIR/developer-portal-local-runtime/bin/activate" # Sets local environment
 alias cdo="cd $OK_DIR" # cd origo dir
 alias cdok="cd $OK_DIR/kryptert_dokumentasjon" # cd kryptert
-alias cdob="cd $OK_DIR/api-catalog-backend/backend" # cd backend
-alias cdoc="cd $OK_DIR/developer-portal-charts" # cd charts
-alias cdod="cd $OK_DIR/developer-portal-frontend" # cd frontend
 alias cdog="cd $OK_DIR/gatekeeper"
 
-# Activate VPN
-alias oslvpn='sudo openconnect --user=byr306134 fa-lev.oslo.kommune.no'
+#### Kjøreplattform
+alias okinstall="cd /home/deifyed/origo/kjøremiljø/okctl/cmd/okctl && go install && popd"
+alias fml="make fmt && clear && make lint"
 
 # Shortcuts
-alias off='shutdown -h now'
+alias off='shutdown -h now' # Shutdown
 alias highwind='sudo netctl start highwind'
 alias C='clear' # Clears the screen
+alias u='cd ..' # One directory up
 alias tree='tree -I "*.pyc|__pycache__|node_modules"' # Shows a tidy tree, needs tree installed
 alias ls='ls -G --color --hide="*.pyc" --hide="__pycache__" --hide="node_modules" --hide="__init__.py" --hide="package-lock.json" --hide="CODE_OF_CONDUCT.md" --hide="LICENSE" ' # Cleans ls output. Doesnt work on mac
 alias la='ls -ah' # ls all
 alias ll='ls -lh' # ls list
 alias greptext='grep -Rln' # Looks for text recursively
 alias vi='vim' # vim is not always available. And shorter
-alias bwlogin="bw unlock | grep export | cut -d'\"' -f2 - > ~/.bwsession" # Logs into Bitwarden CLI
 alias bw="bw --session $(cat ~/.bwsession)" # Prefixes bw commands with current session
+alias hub="cd /home/deifyed/origo/.labs/hub"
+alias v='vault'
 
 # Git
 alias gs='git status'
 alias gd='git diff'
 alias ga='git add'
 alias gc='git commit'
+alias gcamend='git commit --amend --no-edit'
 alias gp='git push'
 
 # Docker
@@ -45,9 +45,10 @@ alias keycloak='docker run --rm -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admi
 alias tf="terraform"
 
 # Kubernetes
-alias klogin="$OK_DIR/k8s-scripts/k8s-auth-client.sh" # Logs into Kubernetes
+alias klogin="$OK_DIR/general/k8s-scripts/k8s-auth-client.sh" # Logs into Kubernetes
 alias kwatch="watch kubectl get pods" # Watches pods
 alias kns="kubens"
+alias kz="kustomize"
 
 # Python
 alias venv="python3 -m venv .venv"
@@ -56,3 +57,9 @@ alias glogin="cat token.txt| docker login docker.pkg.github.com -u deifyed@ctemp
 
 # Tildetown
 alias tildetown="ssh -i ~/.ssh/tildetown_rsa deifyed@tilde.town"
+
+# K3d
+alias k3dup="k3d cluster create --registry-create tuuturu"
+alias k3ddown="k3d cluster delete tuuturu"
+
+alias FUCK="echo calm down julius, its only a game"

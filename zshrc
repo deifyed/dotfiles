@@ -8,7 +8,7 @@ export OK_DIR=/home/deifyed/origo
 
 # Setting env
 export LC_ALL=en_US.UTF-8
-export GOPATH=/home/deifyed/.local/lib/go
+#export GOPATH=/home/deifyed/.local/lib/go
 export EDITOR=vim
 export VDIRSYNCER_CONFIG=/home/deifyed/life/contacts/.vdirsyncer/config
 
@@ -19,7 +19,7 @@ export XDG_CONFIG_HOME="${USER_HOME}/.config"
 
 export HELM_HOME="${USER_HOME}/.config/helm"
 
-export PATH=/home/deifyed/.local/bin:/home/deifyed/.local/share/npm/modules/bin:$PATH
+export PATH=/home/deifyed/.local/bin:/home/deifyed/.local/share/npm/modules/bin:$PATH:$(go env GOPATH)/bin
 export RPI="10.58.25.238"
 
 source ~/.aliases
@@ -28,8 +28,17 @@ source ~/.functions
 # Fix java applications in wayland
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# Wayland
+export MOZ_ENABLE_WAYLAND=1
+
+export XDG_SESSION_TYPE=wayland
+export XDG_CURRENT_DESKTOP=sway
+
+#export WAYLAND_DEBUG=1
+#export GDK_BACKEND=wayland
+
 # Keys
-#eval $(keychain --eval --quiet --agents gpg,ssh)
+eval $(keychain --eval --quiet --agents gpg,ssh)
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -106,6 +115,8 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+source /home/deifyed/.local/src/z/z.sh
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -125,3 +136,12 @@ source /usr/share/nvm/init-nvm.sh
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/mcli mcli
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/deifyed/.sdkman"
+[[ -s "/home/deifyed/.sdkman/bin/sdkman-init.sh" ]] && source "/home/deifyed/.sdkman/bin/sdkman-init.sh"
+
+[[ -s "/home/deifyed/.gvm/scripts/gvm" ]] && source "/home/deifyed/.gvm/scripts/gvm"
+
+complete -o nospace -C /usr/bin/terraform terraform
+complete -o nospace -C /usr/bin/kustomize kustomize

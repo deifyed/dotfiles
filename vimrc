@@ -1,6 +1,9 @@
 " Set leader key
 let mapleader=","
 
+" Hides the 'you have unsaved changes, are you sure' prompt
+set hidden
+
 " Use system clipboard
 "set clipboard+=unnamedplus
 
@@ -14,6 +17,24 @@ set smartindent
 
 " Center screen on input
 "autocmd InsertEnter * norm zz
+"
+"
+call plug#begin('~/.vim/plugged')
+
+set pyxversion=3
+if has('nvim')
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+	Plug 'Shougo/deoplete.nvim'
+	Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+	Plug 'roxma/nvim-yarp'
+	Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
+call plug#end()
+
+let g:deoplete#enable_at_startup = 1
+
 
 " Remove trailing whitespace
 autocmd BufWritePre * %s/\s\+$//e

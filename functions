@@ -6,13 +6,13 @@ sman() { curl cht.sh/$1 }
 ##################################################
 ##### Helm
 ##################################################
+#h() {
+#  # Gotten from Yngvar Kristiansen
+#  CURRENT_NAMESPACE=`kubectl config view --minify --output 'jsonpath={..namespace}'`
+#  echo Using namespace for helm: $CURRENT_NAMESPACE
+#  helm --tiller-namespace=$CURRENT_NAMESPACE $@
+#}
 h() {
-  # Gotten from Yngvar Kristiansen
-  CURRENT_NAMESPACE=`kubectl config view --minify --output 'jsonpath={..namespace}'`
-  echo Using namespace for helm: $CURRENT_NAMESPACE
-  helm --tiller-namespace=$CURRENT_NAMESPACE $@
-}
-h3() {
   CURRENT_NAMESPACE=`kubectl config view --minify --output 'jsonpath={..namespace}'`
   echo Using namespace for helm: $CURRENT_NAMESPACE
   /usr/bin/helm --namespace=$CURRENT_NAMESPACE $@
@@ -40,4 +40,25 @@ vin() {
 	vi /tmp/vinotes/${NPATH}
 
 	mv /tmp/vinotes/${NPATH} ~/life/notes/vinotes/${NPATH}.md
+}
+
+##################################################
+##### Docker
+##################################################
+prunedocker() {
+	docker stop $(docker ps -q) &> /dev/null
+	docker rm $(docker ps -aq)  &> /dev/null
+	docker rmi -f $(docker images -aq) &> /dev/null
+	docker system prune --volumes
+}
+
+##################################################
+##### Git
+##################################################
+gdf() {
+	if [ -z "$1" ]; then
+		    echo "usage: $0 number_of_commits"
+	fi
+
+	git diff --name-only HEAD~$1 HEAD | cat
 }
