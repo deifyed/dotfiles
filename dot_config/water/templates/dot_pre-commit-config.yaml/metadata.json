@@ -1,0 +1,9 @@
+[
+	{
+		"target": "./golang",
+		"tags": {
+			"name": ".pre-commit-config.yaml",
+			"language": "golang"
+		}
+	}
+]

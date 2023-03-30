@@ -1,0 +1,36 @@
+openapi: 3.0.3
+info:
+  title: "{{ .ProjectName }}"
+  description: "Description"
+  version: "0.0.1"
+  contact:
+    name: ""
+    email: ""
+tags:
+- name: "REST"
+  description: "Entrypoints designed to be used programmatically"
+paths:
+  /somepath:
+    get:
+      tags:
+      - REST
+      summary: "short summary"
+      description: "short description"
+      responses:
+        200:
+          description: a description
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserinfoResponse"
+        401:
+          description: "Missing or invalid access token"
+
+components:
+  schemas:
+    SomeObject:
+      description: Object description
+      type: object
+      properties:
+        prop1:
+          type: string
