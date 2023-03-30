@@ -1,0 +1,59 @@
+window {
+	margin: 5px;
+	border: 2px solid #073642;
+	background-color: #073642;
+}
+
+#input {
+	margin: 5px;
+	border: 2px solid #073642;
+	background-color: #073642;
+	color: #839496;
+}
+
+#inner-box { /* Menu items container */
+	margin: 5px;
+	border: 2px solid #002b36;
+	background-color: #002b36;
+}
+
+#outer-box { /* input + menu items container */
+	margin: 5px;
+	border: 2px solid #002b36;
+	background-color: #002b36;
+}
+
+#scroll { /* scrollbar + frame around menu items */
+	margin: 5px;
+	border: 2px solid #002b36;
+	background-color: #002b36;
+}
+
+#text { /* Menu item text */
+	margin: 5px;
+	color: #839496;
+}
+
+#entry:selected { /* selected menu item */
+	background-color: #073642;
+	border: 2px solid #002b36;
+}
+
+/*
+ * $base03:    #002b36; background highlight
+ * $base02:    #073642; background
+ * $base01:    #586e75; comments / secondary content
+ * $base00:    #657b83;
+ * $base0:     #839496; primary content
+ * $base1:     #93a1a1; empathized content
+ * $base2:     #eee8d5;
+ * $base3:     #fdf6e3;
+ * $yellow:    #b58900;
+ * $orange:    #cb4b16;
+ * $red:       #dc322f;
+ * $magenta:   #d33682;
+ * $violet:    #6c71c4;
+ * $blue:      #268bd2;
+ * $cyan:      #2aa198;
+ * $green:     #859900;
+ */
