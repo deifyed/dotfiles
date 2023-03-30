@@ -1,0 +1,16 @@
+<base>
+[del]>[rwin]
+
+<keypad>
+
+<function1>
+{a}>{-lctr}{-lshf}{u}{+lctr}{+lshf}{0}{0}{e}{5}{ent}
+{rshf}{a}>{-lctr}{-lshf}{u}{+lctr}{+lshf}{0}{0}{c}{5}{ent}
+{e}>{-lctr}{-lshf}{u}{+lctr}{+lshf}{0}{0}{e}{6}{ent}
+{rshf}{e}>{-lctr}{-lshf}{u}{+lctr}{+lshf}{0}{0}{c}{6}{ent}
+{o}>{-lctr}{-lshf}{u}{+lctr}{+lshf}{0}{0}{f}{8}{ent}
+{lshf}{o}>{-lctr}{-lshf}{u}{+lctr}{+lshf}{0}{0}{d}{8}{ent}
+
+<function2>
+
+<function3>
