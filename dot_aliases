@@ -83,6 +83,7 @@ alias tildetown="ssh -i ~/.ssh/tildetown_rsa deifyed@tilde.town"
 alias list-local-hosts="nmap -sP 192.168.1.0/24"
 alias vicfg="(cd $HOME/.config/nvim/ && vi)"
 alias slack="/usr/bin/slack --ozone-platform-hint=auto"
+alias chez="chezmoi"
 
 ## Abbreviations
 alias tbltest="cat ~/.vim/plugin/deifyed/templates/tbltest.go | wl-copy -n"
