@@ -1,0 +1,42 @@
+#!/usr/bin/python
+import json
+import os
+import subprocess
+
+# Requires
+# - wofi (alternatively you can use dmenu if on xorg)
+# - wl-copy (alternatively you can use xclip if on xorg)
+# - Some emoji dictionary a'la
+# {
+#   "emoji": "🏴󠁧󠁢󠁳󠁣󠁴",
+#   "code": "U+1F3F4",
+#   "description": "flag: Scotland",
+#   "aliases": [
+#       "flag_scotland"
+#   ],
+#   "tags": [
+#       "flag"
+#   ]
+# },
+
+EMOJI_DICT_PATH = os.path.join(os.path.expanduser('~'), '.oh-my-zsh/plugins/emoji-cli/dict/emoji.json')
+MENU_COMMAND = 'wofi -bIi -d'.split()
+CLIPBOARD_COMMAND = 'wl-copy'.split()
+
+emojis = dict()
+with open(EMOJI_DICT_PATH, 'r') as f:
+    emojis = json.loads(f.read().strip())
+
+list_output = ''
+for item in emojis:
+    list_output += f'{item["emoji"]} {item["description"]}\n'
+
+process = subprocess.run(
+        MENU_COMMAND,
+        capture_output=True,
+        input=list_output.encode('utf-8')
+)
+
+target = process.stdout.split()[0]
+
+subprocess.run(CLIPBOARD_COMMAND, input=target)

@@ -1,0 +1,45 @@
+#!/usr/bin/python
+import subprocess
+
+# Requires
+# - wofi (alternatively you can use dmenu if on xorg)
+# - wl-copy (alternatively you can use xclip if on xorg)
+emojis = [
+    {  # For adding new functionality
+        "emoji": "✅",
+        "description": "Add",
+    },
+    {  # For small changes
+        "emoji": "👌",
+        "description": "Improve",
+    },
+    {  # For fixing bugs
+        "emoji": "🐛",
+        "description": "Fix",
+    },
+    {  # For a special event
+        "emoji": "🚀",
+        "description": "Bootstrap",
+    },
+    {  # For bumping things
+        "emoji": "📦",
+        "description": "Bump",
+    },
+]
+
+MENU_COMMAND = 'wofi -bIi -d'.split()
+CLIPBOARD_COMMAND = 'wl-copy'.split()
+
+list_output = ''
+for item in emojis:
+    list_output += f'{item["emoji"]} {item["description"]}\n'
+
+process = subprocess.run(
+        MENU_COMMAND,
+        capture_output=True,
+        input=list_output.encode('utf-8')
+)
+
+target = process.stdout.strip()
+
+subprocess.run(CLIPBOARD_COMMAND, input=target)

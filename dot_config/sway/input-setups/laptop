@@ -1,0 +1,12 @@
+input * {
+    xkb_layout us,no
+    xkb_options grp:caps_switch
+}
+
+input "2:7:SynPS/2_Synaptics_TouchPad" {
+    dwt enabled # disable while typing
+    tap enabled
+    natural_scroll enabled
+    pointer_accel -0.1
+    scroll_button disable
+}

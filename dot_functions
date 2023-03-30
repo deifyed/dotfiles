@@ -1,0 +1,140 @@
+#!/bin/bash
+mkcd() { mkdir -p "$@" && cd "$_"; }
+scratch() { mkdir -p "/tmp/scratchfolder" && cd "/tmp/scratchfolder" }
+sman() { curl cht.sh/$1 }
+bw() { /usr/bin/bw --session $(cat ~/.bwsession) $@ }
+okctl() { $(ovm current -p) $@ }
+netup() { sudo netctl start $1 && sudo netctl wait-online $1 }
+passgen() { pwgen -sync $1 | cut -d' ' -f1 | wl-copy -n }
+
+##################################################
+##### Helm
+##################################################
+#h() {
+#  # Gotten from Yngvar Kristiansen
+#  CURRENT_NAMESPACE=`kubectl config view --minify --output 'jsonpath={..namespace}'`
+#  echo Using namespace for helm: $CURRENT_NAMESPACE
+#  helm --tiller-namespace=$CURRENT_NAMESPACE $@
+#}
+h() {
+  CURRENT_NAMESPACE=`kubectl config view --minify --output 'jsonpath={..namespace}'`
+  echo Using namespace for helm: $CURRENT_NAMESPACE
+  /usr/bin/helm --namespace=$CURRENT_NAMESPACE $@
+}
+
+##################################################
+##### Kubernetes
+##################################################
+#alias kset2="export KUBECONFIG=~/.kube/configs/$1.yaml"
+kset() {
+  export KUBECONFIG=~/.kube/configs/$1.yaml
+}
+ksethere() {
+	export KUBECONFIG=${PWD}/kubeconfig.yaml
+}
+knset() {
+  export KUBENAMESPACE=$1
+}
+
+##################################################
+##### Docker
+##################################################
+prunedocker() {
+	docker stop $(docker ps -q) &> /dev/null # Stops all running containers
+	docker rm $(docker ps -aq)  &> /dev/null # Removes all containers
+	docker rmi -f $(docker images -aq) &> /dev/null # Removes all images
+	docker system prune --volumes # Removes most docker data
+}
+
+##################################################
+##### Git
+##################################################
+gdf() {
+	if [ -z "$1" ]; then
+		    echo "usage: $0 number_of_commits"
+	fi
+
+	git diff --name-only HEAD~$1 HEAD | cat
+}
+
+yolo() {
+	current=`git branch --show-current`
+
+	if [[ "${current}" == "master" ]]; then
+		echo "careful! no yoloing on master"
+
+		return 1
+	fi
+
+	if [[ "${current}" == "main" ]]; then
+		echo "careful! no yoloing on main"
+
+		return 1
+	fi
+
+	echo "LEEEEEEROY"
+
+	git push -f
+}
+
+##################################################
+##### AWS
+##################################################
+profile-select() {
+    export AWS_PROFILE=$(aws configure list-profiles | fzf)
+}
+
+##################################################
+##### Port forwarding
+##################################################
+ksyncthing() {
+	NAME=$(kubectl -n personal get pods | grep syncthing | cut -d' ' -f1)
+
+	kubectl -n personal port-forward ${NAME} 8000:8384
+}
+
+kargocd() {
+	kubectl -n argocd port-forward svc/argocd-server 8000:443
+}
+
+gwc() {
+    targetDir=$(basename $1 | cut -d'.' -f1)
+
+    mkdir -p $targetDir
+    cd $targetDir
+
+    git clone --bare $1 .bare
+    echo "gitdir: ./.bare" > .git
+}
+
+activate-profile() {
+    case $1 in
+        "laptop")
+            echo "Linking laptop monitor setup"
+            rm ~/.config/sway/config.d/monitor && ln ~/.config/sway/monitor-setups/laptop ~/.config/sway/config.d/monitor
+            ;;
+        "home")
+            echo "Activating netctl profile sanita"
+            sudo netctl start sanita
+            echo "Linking home-office monitor setup"
+            rm ~/.config/sway/config.d/monitor && ln ~/.config/sway/monitor-setups/home-office ~/.config/sway/config.d/monitor
+            ;;
+        "work")
+            echo "Activating netctl profile work"
+            sudo netctl start origo
+            echo "Linking work monitor setup"
+            rm ~/.config/sway/config.d/monitor && ln ~/.config/sway/monitor-setups/work ~/.config/sway/config.d/monitor
+            ;;
+        *)
+            echo "Unknown profile $1"
+            ;;
+    esac
+}
+
+profilectl() {
+    case $1 in
+        "set")
+            activate-profile $2
+            ;;
+    esac
+}

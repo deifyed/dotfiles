@@ -1,0 +1,105 @@
+#!/usr/bin/bash
+
+alias s="secret" # Calls my secret manager
+
+## Personal
+alias calendar='vi "+:Calendar"'
+alias wiki='vi "+:VimwikiIndex"'
+
+alias note="vi + -- ~/life/Notes/notes/quicknotes/$(date +%Y-%m%d).md"
+alias wnote="vi + -- ~/life/Notes/notes/work/quicknotes/$(date +%Y-%m-%d).md"
+alias tdo="vi + -- ~/life/Notes/notes/todo.md"
+
+## Shortcuts
+alias off='shutdown -h now' # Shutdown
+alias C='clear' # Clears the screen
+alias u='cd ..' # One directory up
+alias tree='tree -I "*.pyc|__pycache__|node_modules"' # Shows a tidy tree, needs tree installed
+alias clip64="wl-paste -n | base64 -w 0 | wl-copy"
+alias ports='netstat -tulanp'
+alias ls="exa"
+
+## Command tweaks
+
+### Git
+alias gs='git status -s'
+alias gd='git diff'
+alias ga='git add'
+alias gap='git add $_'
+alias gc='git commit'
+alias gcmr='git commit -m "$(uuidgen)"'
+alias gcamend='git commit --amend --no-edit'
+alias gp='git push'
+
+### Terraform
+alias tfswitch="tfswitch --bin ~/.local/bin/terraform"
+alias tf="terraform"
+alias tfi="terraform init"
+alias tfp="terraform plan -out plan.file"
+alias tfa="terraform apply plan.file && rm plan.file"
+alias tpc='docker run -e "USERID=$(id -u):$(id -g)" -v $(pwd):/lint -w /lint ghcr.io/antonbabenko/pre-commit-terraform:v1.76.0 run -a'
+
+### AWS
+alias awp="profile-select"
+alias eksctl="eksctl --color fabulous"
+alias aws="aws --no-paginate"
+alias clear-aws-env="unset AWS_REGION AWS_SESSION_TOKEN AWS_PROFILE AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY"
+
+### Docker
+alias dc='docker-compose' # You can now type dc up -d
+alias postgres='docker run --rm -e POSTGRES_PASSWORD=postgres -p 5432:5432 --name postgres -d postgres'
+alias redis='docker run --rm -p 6379:6379 --name redis -d redis' # Starts redis
+alias keycloak='docker run --rm -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -e KEYCLOAK_LOGLEVEL=debug -p 5000:8080 --name keycloak -d jboss/keycloak'
+
+### Kubernetes
+alias kwatch="watch kubectl get pods" # Watches pods
+alias kns="kubens"
+alias kdebug="kubectl debug --image=markeijsermans/debug:kitchen-sink -it --share-processes --copy-to=debugger"
+alias kz="kustomize"
+alias k8s-show-ns="kubectl api-resources --verbs=list --namespaced -o name  | xargs -n 1 kubectl get --show-kind --ignore-not-found  -n"
+alias k3dup="k3d cluster create --registry-create tuuturu"
+alias k3ddown="k3d cluster delete tuuturu"
+
+### Python
+alias venv="python3 -m venv .venv"
+
+### Grep
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias greptext='grep -Rln' # Looks for text recursively
+
+### Div
+alias la='ls -ah' # ls all
+alias ll='ls -lh' # ls list
+alias vlc='cvlc'
+alias yt='ytfzf'
+alias vi='nvim' # vim is not always available. And shorter. And nvim
+alias curl="curlie"
+alias vlt='vault'
+alias myip="curl http://icanhazip.com"
+alias syncthingopen="firefox --new-tab 127.0.0.1:8384"
+alias tildetown="ssh -i ~/.ssh/tildetown_rsa deifyed@tilde.town"
+alias list-local-hosts="nmap -sP 192.168.1.0/24"
+alias vicfg="(cd $HOME/.config/nvim/ && vi)"
+alias slack="/usr/bin/slack --ozone-platform-hint=auto"
+
+## Abbreviations
+alias tbltest="cat ~/.vim/plugin/deifyed/templates/tbltest.go | wl-copy -n"
+
+## Work
+
+### Directories
+alias cdo="cd $OK_DIR" # cd origo dir
+alias cdog="cd $OK_DIR/gatekeeper"
+alias km="cd $OK_DIR/kjøremiljø"
+alias kmd="(cd $OK_DIR/kjøremiljø/docs && vi index.md)"
+alias kmo="cd $OK_DIR/kjøremiljø/okctl"
+alias kmou="cd $OK_DIR/kjøremiljø/okctl-upgrade"
+alias iac="cd $OK_DIR/kjøremiljø/iac-repositories"
+alias iacj="cd $OK_DIR/kjøremiljø/iac-repositories/julius-dev"
+
+alias wtdo="(cd $OK_DIR/kjøremiljø/docs && vi + -- todo.md)"
+alias klogin="$OK_DIR/general/k8s-scripts/k8s-auth-client.sh" # Logs into Kubernetes
+
+. ~/.aliases.secret
