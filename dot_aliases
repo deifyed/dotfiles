@@ -18,6 +18,7 @@ alias tree='tree -I "*.pyc|__pycache__|node_modules"' # Shows a tidy tree, needs
 alias clip64="wl-paste -n | base64 -w 0 | wl-copy"
 alias ports='netstat -tulanp'
 alias ls="exa"
+alias bat="bat -P"
 
 ## Command tweaks
 
