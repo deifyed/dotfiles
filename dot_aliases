@@ -5,6 +5,7 @@ alias s="secret" # Calls my secret manager
 ## Personal
 alias calendar='vi "+:Calendar"'
 alias wiki='vi "+:VimwikiIndex"'
+alias todo='vi + -- ~/wiki/TODO.md'
 
 alias note="vi + -- ~/life/Notes/notes/quicknotes/$(date +%Y-%m%d).md"
 alias wnote="vi + -- ~/life/Notes/notes/work/quicknotes/$(date +%Y-%m-%d).md"
@@ -94,14 +95,5 @@ alias tbltest="cat ~/.vim/plugin/deifyed/templates/tbltest.go | wl-copy -n"
 ### Directories
 alias cdo="cd $OK_DIR" # cd origo dir
 alias cdog="cd $OK_DIR/gatekeeper"
-alias km="cd $OK_DIR/kjøremiljø"
-alias kmd="(cd $OK_DIR/kjøremiljø/docs && vi index.md)"
-alias kmo="cd $OK_DIR/kjøremiljø/okctl"
-alias kmou="cd $OK_DIR/kjøremiljø/okctl-upgrade"
-alias iac="cd $OK_DIR/kjøremiljø/iac-repositories"
-alias iacj="cd $OK_DIR/kjøremiljø/iac-repositories/julius-dev"
-
-alias wtdo="(cd $OK_DIR/kjøremiljø/docs && vi + -- todo.md)"
-alias klogin="$OK_DIR/general/k8s-scripts/k8s-auth-client.sh" # Logs into Kubernetes
 
 . ~/.aliases.secret
