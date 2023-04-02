@@ -8,7 +8,7 @@
 [diff]
     pager = "delta"
     command = "delta"
-    args = ["{{ .Destination }}", "{{ .Target }}"]
+    args = ["\{\{ .Destination \}\}", "\{\{ .Target \}\}"]
 [merge]
     command = "nvim"
-    args = ["-d", "{{ .Destination }}", "{{ .Source }}", "{{ .Target }}"]
+    args = ["-d", "\{\{ .Destination \}\}", "\{\{ .Source \}\}", "\{\{ .Target \}\}"]
