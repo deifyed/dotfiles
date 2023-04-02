@@ -1,0 +1,8 @@
+*.secret
+.idea
+upgrade
+plan.file
+
+tagger
+
+node_modules/
