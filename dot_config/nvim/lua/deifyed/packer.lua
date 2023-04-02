@@ -73,7 +73,7 @@ return require('packer').startup(function(use)
         'vimwiki/vimwiki',
         config = function()
             vim.g.vimwiki_list = {{
-                path = os.getenv("HOME") .. "/life/wiki",
+                path = os.getenv("HOME") .. "/wiki",
             }}
         end
     })
