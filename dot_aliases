@@ -5,11 +5,7 @@ alias s="secret" # Calls my secret manager
 ## Personal
 alias calendar='vi "+:Calendar"'
 alias wiki='vi "+:VimwikiIndex"'
-alias todo='vi + -- ~/wiki/TODO.md'
-
-alias note="vi + -- ~/life/Notes/notes/quicknotes/$(date +%Y-%m%d).md"
-alias wnote="vi + -- ~/life/Notes/notes/work/quicknotes/$(date +%Y-%m-%d).md"
-alias tdo="vi + -- ~/life/Notes/notes/todo.md"
+alias todo='vi + -- ~/wiki/TODO.wiki'
 
 ## Shortcuts
 alias off='shutdown -h now' # Shutdown
@@ -89,11 +85,5 @@ alias chez="chezmoi"
 
 ## Abbreviations
 alias tbltest="cat ~/.vim/plugin/deifyed/templates/tbltest.go | wl-copy -n"
-
-## Work
-
-### Directories
-alias cdo="cd $OK_DIR" # cd origo dir
-alias cdog="cd $OK_DIR/gatekeeper"
 
 . ~/.aliases.secret
