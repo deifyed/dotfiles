@@ -5,7 +5,7 @@ alias s="secret" # Calls my secret manager
 ## Personal
 alias calendar='vi "+:Calendar"'
 alias wiki='vi "+:VimwikiIndex"'
-alias todo='vi + -- ~/wiki/TODO.wiki'
+alias todo='vi + -- ~/wiki/TODO.md'
 
 ## Shortcuts
 alias off='shutdown -h now' # Shutdown
