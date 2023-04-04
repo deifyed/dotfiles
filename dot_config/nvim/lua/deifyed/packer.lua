@@ -63,10 +63,6 @@ return require('packer').startup(function(use)
             {'zbirenbaum/copilot-cmp'},
         }
     })
-    use({
-    'glacambre/firenvim',
-    run = function() vim.fn['firenvim#install'](0) end
-    })
 
     -- Personal
 	use({ -- Organize information
