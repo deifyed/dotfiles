@@ -70,7 +70,10 @@ return require('packer').startup(function(use)
         config = function()
             vim.g.vimwiki_list = {{
                 path = os.getenv("HOME") .. "/wiki",
+                syntax = "markdown",
+                ext = ".md",
             }}
+            vim.g.vimwiki_global_ext = 0
         end
     })
     use('itchyny/calendar.vim')
