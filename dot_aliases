@@ -68,8 +68,9 @@ alias fgrep='fgrep --color=auto'
 alias greptext='grep -Rln' # Looks for text recursively
 
 ### Div
-alias la='ls -ah' # ls all
+alias l='ls -lh' # ls list
 alias ll='ls -lh' # ls list
+alias la='ls -ah' # ls all
 alias vlc='cvlc'
 alias yt='ytfzf'
 alias vi='nvim' # vim is not always available. And shorter. And nvim
