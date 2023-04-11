@@ -8,14 +8,20 @@ alias wiki='vi "+:VimwikiIndex"'
 alias todo='vi + -- ~/wiki/TODO.md'
 
 ## Shortcuts
-alias off='shutdown -h now' # Shutdown
 alias C='clear' # Clears the screen
 alias u='cd ..' # One directory up
+alias l='ls -lh' # ls list
+alias ll='ls -ah' # ls all
+alias la='ls -ah' # ls all
+alias off='shutdown -h now' # Shutdown
 alias tree='tree -I "*.pyc|__pycache__|node_modules"' # Shows a tidy tree, needs tree installed
-alias clip64="wl-paste -n | base64 -w 0 | wl-copy"
-alias ports='netstat -tulanp'
 alias ls="exa"
 alias bat="bat -P"
+alias chez="chezmoi"
+alias yt='ytfzf'
+alias vi='nvim' # vim is not always available. And shorter. And nvim
+alias vlt='vault'
+alias clip64="wl-paste -n | base64 -w 0 | wl-copy"
 
 ## Command tweaks
 
@@ -67,22 +73,20 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias greptext='grep -Rln' # Looks for text recursively
 
-### Div
-alias l='ls -lh' # ls list
-alias ll='ls -lh' # ls list
-alias la='ls -ah' # ls all
+## Networking
+alias ports='netstat -tulanp'
+alias list-local-hosts="nmap -sP 192.168.1.0/24"
+
+## Command modifications
 alias vlc='cvlc'
-alias yt='ytfzf'
-alias vi='nvim' # vim is not always available. And shorter. And nvim
 alias curl="curlie"
-alias vlt='vault'
+alias slack="/usr/bin/slack --ozone-platform-hint=auto"
+
+### Div
+alias vicfg="(cd $HOME/.config/nvim/ && vi)"
 alias myip="curl http://icanhazip.com"
 alias syncthingopen="firefox --new-tab 127.0.0.1:8384"
 alias tildetown="ssh -i ~/.ssh/tildetown_rsa deifyed@tilde.town"
-alias list-local-hosts="nmap -sP 192.168.1.0/24"
-alias vicfg="(cd $HOME/.config/nvim/ && vi)"
-alias slack="/usr/bin/slack --ozone-platform-hint=auto"
-alias chez="chezmoi"
 
 ## Abbreviations
 alias tbltest="cat ~/.vim/plugin/deifyed/templates/tbltest.go | wl-copy -n"
