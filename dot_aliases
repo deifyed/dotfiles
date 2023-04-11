@@ -22,7 +22,7 @@ alias yt='ytfzf'
 alias vi='nvim' # vim is not always available. And shorter. And nvim
 alias vlt='vault'
 alias clip64="wl-paste -n | base64 -w 0 | wl-copy"
-alias cdw="cd $HOME/.workdir-path"
+alias cdw="cd $(cat $HOME/.workdir-path)"
 
 ## Command tweaks
 
