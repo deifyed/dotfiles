@@ -6,3 +6,4 @@ plan.file
 tagger
 
 node_modules/
+generated-sources/
