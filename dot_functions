@@ -107,23 +107,40 @@ gwc() {
     echo "gitdir: ./.bare" > .git
 }
 
+_set-monitor-profile() {
+    printf "Link $1 monitor setup"
+    rm ~/.config/sway/config.d/monitor && ln ~/.config/sway/monitor-setups/$1 ~/.config/sway/config.d/monitor
+    printf " ✅\n"
+}
+
+_set-default-audio-sink() {
+    printf "Set default audio sink to $1"
+    pactl set-default-sink $1
+    printf " ✅\n"
+}
+
+_set-netctl-profile() {
+    printf "Activate netctl profile $1"
+    sudo netctl start $1
+    printf " ✅\n"
+}
+
 activate-profile() {
     case $1 in
         "laptop")
-            echo "Linking laptop monitor setup"
-            rm ~/.config/sway/config.d/monitor && ln ~/.config/sway/monitor-setups/laptop ~/.config/sway/config.d/monitor
+            _set-monitor-profile laptop
+            _set-default-audio-sink alsa_output.pci-0000_00_1f.3.analog-stereo
             ;;
         "home")
-            echo "Activating netctl profile sanita"
-            sudo netctl start sanita
-            echo "Linking home-office monitor setup"
-            rm ~/.config/sway/config.d/monitor && ln ~/.config/sway/monitor-setups/home-office ~/.config/sway/config.d/monitor
+            _set-netctl-profile sanita
+            _set-monitor-profile home-office
+            _set-default-audio-sink alsa_output.usb-Focusrite_Scarlett_2i2_USB-00.analog-stereo
             ;;
         "work")
-            echo "Activating netctl profile work"
-            sudo netctl start origo
-            echo "Linking work monitor setup"
-            rm ~/.config/sway/config.d/monitor && ln ~/.config/sway/monitor-setups/work ~/.config/sway/config.d/monitor
+            _set-netctl-profile origo
+            _set-monitor-profile work
+            _set-default-audio-sink alsa_output.pci-0000_00_1f.3.analog-stereo
+            sudo systemctl start bluetooth
             ;;
         *)
             echo "Unknown profile $1"
