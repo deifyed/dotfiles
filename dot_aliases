@@ -4,10 +4,11 @@ alias s="secret" # Calls my secret manager
 
 ## Personal
 alias calendar='vi "+:Calendar"'
-alias wiki='vi "+:VimwikiIndex"'
+alias wiki='vi + -- ~/wiki/index.md'
 alias todo='vi + -- ~/wiki/TODO.md'
 
 ## Shortcuts
+alias off='systemctl poweroff -i' # Shutdown
 alias C='clear' # Clears the screen
 alias u='cd ..' # One directory up
 alias l='ls -lh' # ls list
@@ -80,6 +81,10 @@ alias ports='netstat -tulanp'
 alias list-local-hosts="nmap -sP 192.168.1.0/24"
 
 ## Command modifications
+### Div
+alias l='ls -lh' # ls list
+alias ls='ls -lh' # ls list
+alias la='ls -ah' # ls all
 alias vlc='cvlc'
 alias curl="curlie"
 alias slack="/usr/bin/slack --ozone-platform-hint=auto"
