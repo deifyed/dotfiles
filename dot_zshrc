@@ -21,7 +21,7 @@ export HELM_HOME="$HOME/.config/helm"
 
 export DENO_INSTALL=$HOME/.local/share/deno
 export PATH=$HOME/.local/bin:$HOME/.local/share/npm/modules/bin:$PATH::~/.krew/bin:$DENO_INSTALL/bin:/opt/android-sdk/platform-tools:/usr/local/bin:${HOME}/origo/kjøremiljø/golden-path-iac/bin
-export PATH=$PATH:$HOME/.local/lib/n/bin
+export PATH=$PATH:$HOME/.local/lib/n/bin:$HOME/.luarocks/bin
 
 # Fix java applications in wayland
 export _JAVA_AWT_WM_NONREPARENTING=1
