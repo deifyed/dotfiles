@@ -11,10 +11,6 @@ alias todo='vi + -- ~/wiki/TODO.md'
 alias off='systemctl poweroff -i' # Shutdown
 alias C='clear' # Clears the screen
 alias u='cd ..' # One directory up
-alias l='ls -lh' # ls list
-alias ll='ls -ah' # ls all
-alias la='ls -ah' # ls all
-alias off='shutdown -h now' # Shutdown
 alias tree='tree -I "*.pyc|__pycache__|node_modules"' # Shows a tidy tree, needs tree installed
 alias ls="exa"
 alias bat="bat -P"
@@ -82,9 +78,9 @@ alias list-local-hosts="nmap -sP 192.168.1.0/24"
 
 ## Command modifications
 ### Div
-alias l='ls -lh' # ls list
-alias ls='ls -lh' # ls list
-alias la='ls -ah' # ls all
+alias l='exa -lh' # ls list
+alias ls='exa -lh' # ls list
+alias la='exa -ah' # ls all
 alias vlc='cvlc'
 alias curl="curlie"
 alias slack="/usr/bin/slack --ozone-platform-hint=auto"
