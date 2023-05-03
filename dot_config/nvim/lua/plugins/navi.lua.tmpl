@@ -1,0 +1,21 @@
+return {
+  "deifyed/naVi",
+  dependencies = {
+    {
+      "jcdickinson/http.nvim",
+      build = "cargo build --workspace --release",
+    },
+  },
+  config = function()
+    require("navi").setup({
+      openai_token = {{ .navi_openai_token }},
+    })
+  end,
+  keys = {
+    { "<C-PageDown>", "<cmd>lua require('navi').open()<cr>", mode = "i", desc = "NaVI prompt" },
+    { "<C-PageDown>", "<cmd>lua require('navi').openRange()<cr>", mode = "v", desc = "NaVI prompt with context" },
+    { "<C-PageUp>", "<cmd>lua require('navi').requestReview()<cr>", mode = "v", desc = "NaVI request review" },
+    { "<C-End>", "<cmd>lua require('navi').explainRange()<cr>", mode = "v", desc = "NaVI explain code" },
+    { "<C-End>", "<cmd>lua require('navi').openChat()<cr>", mode = "n", desc = "NaVI open chat" },
+  },
+}

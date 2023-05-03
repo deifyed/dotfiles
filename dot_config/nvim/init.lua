@@ -1,1 +1,2 @@
-require("deifyed")
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
