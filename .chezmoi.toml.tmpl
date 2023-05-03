@@ -1,9 +1,11 @@
 {{ $name := promptString "name" -}}
 {{ $email := promptString "email" -}}
+{{ $navi_openai_token := promptString "NaVi Open AI token" -}}
 
 [data]
     name = {{ $name | quote }}
     email = {{ $email | quote }}
+    navi_openai_token = {{ $navi_openai_token | quote }}
 
 [diff]
     pager = "delta"
