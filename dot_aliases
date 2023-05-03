@@ -12,7 +12,6 @@ alias off='systemctl poweroff -i' # Shutdown
 alias C='clear' # Clears the screen
 alias u='cd ..' # One directory up
 alias tree='tree -I "*.pyc|__pycache__|node_modules|target|build"' # Shows a tidy tree, needs tree installed
-alias ls="exa"
 alias bat="bat -P"
 alias chez="chezmoi"
 alias yt='ytfzf'
