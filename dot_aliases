@@ -8,9 +8,9 @@ alias wiki='vi + -- ~/wiki/index.md'
 alias todo='vi + -- ~/wiki/TODO.md'
 
 ## Shortcuts
-alias off='systemctl poweroff -i' # Shutdown
-alias C='clear' # Clears the screen
-alias u='cd ..' # One directory up
+alias off='systemctl poweroff -i'                                  # Shutdown
+alias C='clear'                                                    # Clears the screen
+alias u='cd ..'                                                    # One directory up
 alias tree='tree -I "*.pyc|__pycache__|node_modules|target|build"' # Shows a tidy tree, needs tree installed
 alias bat="bat -P"
 alias chez="chezmoi"
@@ -77,7 +77,7 @@ alias list-local-hosts="nmap -sP 192.168.1.0/24"
 
 ## Command modifications
 ### Div
-alias l='exa -lh' # ls list
+alias l='exa -lh'  # ls list
 alias ls='exa -lh' # ls list
 alias la='exa -ah' # ls all
 alias vlc='cvlc'
