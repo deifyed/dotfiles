@@ -12,10 +12,11 @@ return {
     })
   end,
   keys = {
-    { "<C-PageDown>", "<cmd>lua require('navi').open()<cr>", mode = "i", desc = "NaVI prompt" },
-    { "<C-PageDown>", "<cmd>lua require('navi').openRange()<cr>", mode = "v", desc = "NaVI prompt with context" },
-    { "<C-PageUp>", "<cmd>lua require('navi').requestReview()<cr>", mode = "v", desc = "NaVI request review" },
-    { "<C-End>", "<cmd>lua require('navi').explainRange()<cr>", mode = "v", desc = "NaVI explain code" },
-    { "<C-End>", "<cmd>lua require('navi').openChat()<cr>", mode = "n", desc = "NaVI open chat" },
+    { "<leader>na", "<cmd>lua require('navi').open()<cr>", mode = "n", desc = "NaVI append" },
+    { "<leader>ne", "<cmd>lua require('navi').openRange()<cr>", mode = "v", desc = "NaVI edit" },
+    { "<leader>nb", "<cmd>lua require('navi').openFile()<cr>", mode = "n", desc = "NaVI edit buffer" },
+    { "<leader>nr", "<cmd>lua require('navi').requestReview()<cr>", mode = "v", desc = "NaVI review" },
+    { "<leader>nx", "<cmd>lua require('navi').explainRange()<cr>", mode = "v", desc = "NaVI explain" },
+    { "<leader>nc", "<cmd>lua require('navi').openChat()<cr>", mode = "n", desc = "NaVI chat" },
   },
 }
