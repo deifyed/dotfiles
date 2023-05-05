@@ -8,6 +8,7 @@ return {
   },
   config = function()
     require("navi").setup({
+      debug = true,
       openai_token = {{ .navi_openai_token | quote }},
     })
   end,
