@@ -1,0 +1,55 @@
+let mapleader=" "
+
+" Improve window navigation
+map <leader>h :wincmd h<CR>
+map <leader>j :wincmd j<CR>
+map <leader>k :wincmd k<CR>
+map <leader>l :wincmd l<CR>
+
+" Yanking
+nnoremap Y y$
+
+" Concat
+nnoremap J mzJ`z
+
+" Marking
+nnoremap ' `
+
+" Nexting/backing
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Moving
+vnoremap K :m '<-2<CR>gv=gv " Shift k to move selection up
+vnoremap J :m '>+1<CR>gv=gv " Shift j to move selection down
+inoremap <C-j> <esc>:m .+1<CR>==
+inoremap <C-k> <esc>:m .-2<CR>==
+nnoremap <leader>k :m .-2<CR>==
+nnoremap <leader>j :m .+1<CR>==
+
+set hidden
+set noerrorbells
+set cmdheight=1
+set colorcolumn=80
+
+" Tabs
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+" Indents
+set autoindent
+set smartindent
+set scrolloff=10
+" Line numbering
+set number
+set relativenumber
+" Colors
+set background=dark
+colorscheme solarized
+" Search
+set nohlsearch
+" FZF
+set rtp+=/usr/bin/fzf
+" Invisible chars
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+
