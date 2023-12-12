@@ -29,9 +29,14 @@ desktop:  ## Install and configure the desktop environment
 	git clone https://github.com/deifyed/wstoggler.git ${HOME}/.local/src/wstoggler && $(cd ${HOME}/.local/src/wstoggler && make && make install)
 	yay -S \
 		ttf-firacode ttf-firacode-nerd \
-		sway swayidle swaylock swaybg \
+		sway swayidle swaylock swaybg wofi \
 		alacritty \
 		firefox
+
+keyboard:
+	yay -S interception-tools interception-dual-function-keys interception-caps2esc
+	sudo cp ${HOME}/.local/share/chezmoi/div/interception/conf.d/dual-shifts-en.yaml /etc/interception/conf.d/dual-shifts-en.yaml
+	sudo cp ${home}/.local/share/chezmoi/div/interception/udevmon.yaml /etc/interception/udevmon.yaml
 
 audio:  ## Install and configure audio
 	yay -S pipewire pipewire-alsa pipewire-jack wireplumber qpwgraph
