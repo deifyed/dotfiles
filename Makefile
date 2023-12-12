@@ -3,22 +3,17 @@ help:  ## Shows available Makefile targets in a list ordered by expected executi
 
 directories:  ## Ensure expected directories
 	mkdir -p ${HOME}/.local/{share,src,bin}
+	mkdir -p ${HOME}/{downloads,output,input}
 
 files:  ## Ensure files expected by different configuration files
 	echo '$HOME/output/' > ${HOME}/.workdir-path
 	echo "" > ${HOME}/.aliases.secret
 
-oh-my-zsh:  ## Install oh-my-zsh, should be done before installing dotfiles
+cli:  ## Install and configure CLI
+	git clone https://aur.archlinux.org/yay.git ${HOME}/.local/src/yay && $(cd ${HOME}/.local/src/yay && makepkg -si)
+	yay -S tree eza curlie bat
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-dotfiles:  ## Install dotfiles with chezmoi
-	sudo pacman -S chezmoi && chezmoi init --apply deifyed
-
-yay:  ## Install yay
-	git clone https://aur.archlinux.org/yay.git ${HOME}/.local/src/yay && cd $_ && makepkg -si
-
-yay-packages:
-	yay -S bat
+	yay -S chezmoi && chezmoi init --apply deifyed
 
 gvm:	## Install gvm
 	yay -S go
@@ -28,12 +23,15 @@ gvm:	## Install gvm
 	gvm use go1.21.1 --default
 	yay -Rs go
 
-download-custom-binaries:  ## Install custom binaries
+desktop:  ## Install and configure the desktop environment
 	git clone https://github.com/deifyed/statusmsg.git ${HOME}/.local/src/statusmsg && $(cd ${HOME}/.local/src/statusmsg && make && make install)
 	git clone https://github.com/deifyed/topbg.git ${HOME}/.local/src/topbg && $(cd ${HOME}/.local/src/topbg && make && make install)
 	git clone https://github.com/deifyed/wstoggler.git ${HOME}/.local/src/wstoggler && $(cd ${HOME}/.local/src/wstoggler && make && make install)
+	yay -S \
+		ttf-firacode ttf-firacode-nerd \
+		sway swayidle swaylock swaybg \
+		alacritty \
+		firefox
 
-pacman-packages:  ## Install pacman packages
-	sudo pacman -S \
-		pipewire pipewire-alsa pipewire-jack wireplumber qpwgraph \ # Audio
-		tree eza curlie #CLI tools
+audio:  ## Install and configure audio
+	yay -S pipewire pipewire-alsa pipewire-jack wireplumber qpwgraph
