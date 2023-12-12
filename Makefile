@@ -11,7 +11,7 @@ files:  ## Ensure files expected by different configuration files
 
 cli:  ## Install and configure CLI
 	git clone https://aur.archlinux.org/yay.git ${HOME}/.local/src/yay && $(cd ${HOME}/.local/src/yay && makepkg -si)
-	yay -S tree eza curlie bat
+	yay -S tree eza curlie bat jq go-yq fzf ripgrep
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	yay -S chezmoi && chezmoi init --apply deifyed
 
@@ -35,8 +35,10 @@ desktop:  ## Install and configure the desktop environment
 
 keyboard:
 	yay -S interception-tools interception-dual-function-keys interception-caps2esc
+	sudo mkdir -p /etc/interception/conf.d/
 	sudo cp ${HOME}/.local/share/chezmoi/div/interception/conf.d/dual-shifts-en.yaml /etc/interception/conf.d/dual-shifts-en.yaml
-	sudo cp ${home}/.local/share/chezmoi/div/interception/udevmon.yaml /etc/interception/udevmon.yaml
+	sudo cp ${HOME}/.local/share/chezmoi/div/interception/udevmon.yaml /etc/interception/udevmon.yaml
+	sudo systemctl enable --now udevmon
 
 audio:  ## Install and configure audio
 	yay -S pipewire pipewire-alsa pipewire-jack wireplumber qpwgraph
