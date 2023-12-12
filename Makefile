@@ -17,10 +17,23 @@ dotfiles:  ## Install dotfiles with chezmoi
 yay:  ## Install yay
 	git clone https://aur.archlinux.org/yay.git ${HOME}/.local/src/yay && cd $_ && makepkg -si
 
-custom-binaries:  ## Install custom binaries
-	git clone https://github.com/deifyed/statusmsg.git ${HOME}/.local/src/statusmsg && cd ${HOME}/.local/src/statusmsg && make && make install
-	git clone https://github.com/deifyed/topbg.git ${HOME}/.local/src/topbg && cd ${HOME}/.local/src/topbg && make && make install
+yay-packages:
+	yay -S bat
+
+gvm:	## Install gvm
+	yay -S go
+	bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+	source ${HOME}/.gvm/scripts/gvm
+	gvm install go1.21.1
+	gvm use go1.21.1 --default
+	yay -Rs go
+
+download-custom-binaries:  ## Install custom binaries
+	git clone https://github.com/deifyed/statusmsg.git ${HOME}/.local/src/statusmsg && $(cd ${HOME}/.local/src/statusmsg && make && make install)
+	git clone https://github.com/deifyed/topbg.git ${HOME}/.local/src/topbg && $(cd ${HOME}/.local/src/topbg && make && make install)
+	git clone https://github.com/deifyed/wstoggler.git ${HOME}/.local/src/wstoggler && $(cd ${HOME}/.local/src/wstoggler && make && make install)
 
 pacman-packages:  ## Install pacman packages
-	sudo pacman -S tree eza curlie
-
+	sudo pacman -S \
+		pipewire pipewire-alsa pipewire-jack wireplumber qpwgraph \ # Audio
+		tree eza curlie #CLI tools
