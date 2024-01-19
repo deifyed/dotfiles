@@ -6,3 +6,8 @@ input * {
     natural_scroll enabled
     tap enabled
 }
+
+input "1133:16505:Logitech_G_Pro" {
+  natural_scroll disabled
+  tap disabled
+}
