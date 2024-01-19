@@ -118,7 +118,7 @@ plugins=(
 	fzf
 	emoji-cli
 	emoji-clock
-    kube-ps1
+  kube-ps1
 )
 
 zstyle :omz:plugins:ssh-agent lifetime 4h
