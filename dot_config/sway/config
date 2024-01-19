@@ -21,7 +21,7 @@ set $term alacritty
 set $menu dmenu_path | dmenu | xargs swaymsg exec --
 
 #font ttf-inconsolata Medium 11
-font pango:SourceCodePro Medium 10
+font pango:SourceCodePro Medium 12
 
 ### Output configuration
 #
