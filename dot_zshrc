@@ -44,12 +44,6 @@ if type rg &> /dev/null; then
 	export FZF_DEFAULT_OPTS='-m'
 fi
 
-# Keys
-export GPG_TTY=$(tty)
-eval $(keychain --eval --quiet --agents gpg,ssh)
-export SSH_AGENT_PID=""
-export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -117,6 +111,7 @@ ZSH_THEME="julius"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  ssh-agent
 	git
 	docker
 	kubectl
@@ -125,6 +120,8 @@ plugins=(
 	emoji-clock
     kube-ps1
 )
+
+zstyle :omz:plugins:ssh-agent lifetime 4h
 
 source $ZSH/oh-my-zsh.sh
 
