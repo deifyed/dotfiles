@@ -3,4 +3,6 @@
 input * {
     xkb_layout us,no
     xkb_options grp:caps_switch
+    natural_scroll enabled
+    tap enabled
 }

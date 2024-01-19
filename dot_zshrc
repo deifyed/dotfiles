@@ -171,3 +171,5 @@ set -o vi
 
 export PRE_COMMIT_ALLOW_NO_CONFIG=1 # Useful when using pre-commit in a monorepo environment
 export FZF_DEFAULT_OPTS='--bind=shift-tab:up,tab:down' # Tab and shift-tab to navigate fzf
+
+[[ -s "/home/origo/.gvm/scripts/gvm" ]] && source "/home/origo/.gvm/scripts/gvm"
