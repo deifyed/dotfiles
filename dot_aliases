@@ -77,9 +77,9 @@ alias list-local-hosts="nmap -sP 192.168.1.0/24"
 
 ## Command modifications
 ### Div
-alias l='exa -lh'  # ls list
-alias ls='exa -lh' # ls list
-alias la='exa -ah' # ls all
+alias l='eza -lh'  # ls list
+alias ls='eza -lh' # ls list
+alias la='eza -ah' # ls all
 alias vlc='cvlc'
 alias curl="curlie"
 alias slack="/usr/bin/slack --ozone-platform-hint=auto"
