@@ -1,7 +1,7 @@
 {{ $name := promptString "name" -}}
 {{ $email := promptString "email" -}}
 {{ $navi_openai_token := promptString "NaVi Open AI token" -}}
-{{ $gpgsignkey := promptString "GPG signing key" -}}
+{{ $gpgsignkey := promptString "GPG signing key ID" -}}
 
 [data]
     name = {{ $name | quote }}
