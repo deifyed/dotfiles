@@ -11,11 +11,11 @@ files:  ## Ensure files expected by different configuration files
 
 cli:  ## Install and configure CLI
 	git clone https://aur.archlinux.org/yay.git ${HOME}/.local/src/yay && $(cd ${HOME}/.local/src/yay && makepkg -si)
-	yay -S tree eza curlie bat jq go-yq fzf ripgrep
+	yay -S tree eza curlie bat jq go-yq fzf ripgrep unzip
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 	yay -S chezmoi && chezmoi init --apply deifyed
 
-gvm:	## Install gvm
+gvm:  ## Install gvm
 	yay -S go
 	bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
 	source ${HOME}/.gvm/scripts/gvm
@@ -33,7 +33,7 @@ desktop:  ## Install and configure the desktop environment
 		alacritty \
 		firefox
 
-keyboard:
+keyboard:  ## Install and configure keyboard related stuff
 	yay -S interception-tools interception-dual-function-keys interception-caps2esc
 	sudo mkdir -p /etc/interception/conf.d/
 	sudo cp ${HOME}/.local/share/chezmoi/div/interception/conf.d/dual-shifts-en.yaml /etc/interception/conf.d/dual-shifts-en.yaml
