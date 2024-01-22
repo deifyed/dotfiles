@@ -11,3 +11,8 @@ input "1133:16505:Logitech_G_Pro" {
   natural_scroll disabled
   tap disabled
 }
+
+input "1133:49288:Logitech_G_Pro_Wireless_Gaming_Mouse" {
+  natural_scroll disabled
+  tap disabled
+}
