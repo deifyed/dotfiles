@@ -20,17 +20,15 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export HELM_HOME="$HOME/.config/helm"
 
 export DENO_INSTALL=$HOME/.local/share/deno
-export PATH=$HOME/.local/bin:$HOME/.local/share/npm/modules/bin:$PATH::~/.krew/bin:$DENO_INSTALL/bin:/opt/android-sdk/platform-tools:/usr/local/bin:${HOME}/origo/kjøremiljø/golden-path-iac/bin
+export PATH=$HOME/.local/bin:$HOME/.local/share/npm/modules/bin:$PATH::~/.krew/bin:$DENO_INSTALL/bin:/opt/android-sdk/platform-tools:/usr/local/bin
 export PATH=$PATH:$HOME/.local/lib/n/bin:$HOME/.luarocks/bin
 
-export PIPEWIRE_LATENCY="128/48000"
-
-# Fix java applications in wayland
-export _JAVA_AWT_WM_NONREPARENTING=1
+export PIPEWIRE_LATENCY="128/44100"
 
 # Wayland
 export MOZ_ENABLE_WAYLAND=1
 export MOZ_DBUS_REMOTE=1 # Enables opening links in slack somehow
+export _JAVA_AWT_WM_NONREPARENTING=1 # Fix java applications in wayland
 
 export XDG_SESSION_TYPE=wayland
 export XDG_CURRENT_DESKTOP=sway
@@ -107,19 +105,16 @@ ZSH_THEME="julius"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  ssh-agent
-	git
-	docker
-	kubectl
+  gpg-agent
 	fzf
-	emoji-cli
-	emoji-clock
   kube-ps1
 )
 
@@ -127,7 +122,7 @@ zstyle :omz:plugins:ssh-agent lifetime 4h
 
 source $ZSH/oh-my-zsh.sh
 
-source $HOME/.local/src/z/z.sh
+[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
 # User configuration
 
@@ -170,5 +165,3 @@ set -o vi
 
 export PRE_COMMIT_ALLOW_NO_CONFIG=1 # Useful when using pre-commit in a monorepo environment
 export FZF_DEFAULT_OPTS='--bind=shift-tab:up,tab:down' # Tab and shift-tab to navigate fzf
-
-[[ -s "/home/origo/.gvm/scripts/gvm" ]] && source "/home/origo/.gvm/scripts/gvm"
