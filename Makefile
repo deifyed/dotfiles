@@ -6,27 +6,26 @@ directories:  ## Ensure expected directories
 	mkdir -p ${HOME}/{downloads,output,input}
 
 files:  ## Ensure files expected by different configuration files
-	echo '$HOME/output/' > ${HOME}/.workdir-path
+	echo '${HOME}/output/' > ${HOME}/.workdir-path
 	echo "" > ${HOME}/.aliases.secret
 
 cli:  ## Install and configure CLI
-	git clone https://aur.archlinux.org/yay.git ${HOME}/.local/src/yay && $(cd ${HOME}/.local/src/yay && makepkg -si)
-	yay -S tree eza curlie bat jq go-yq fzf ripgrep unzip
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-	yay -S chezmoi && chezmoi init --apply deifyed
+	git clone https://aur.archlinux.org/yay.git ${HOME}/.local/src/yay && cd ${HOME}/.local/src/yay && makepkg -si
+	yay --noconfirm -S chezmoi wget tree eza curlie bat jq go-yq fzf ripgrep unzip z
+	cd ${HOME}/downloads && wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh && sh install.sh
+	chezmoi init --apply deifyed
 
 gvm:  ## Install gvm
-	yay -S go
-	bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
-	source ${HOME}/.gvm/scripts/gvm
+	yay --noconfirm -S go
+	cd ${HOME}/downloads && wget https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer && sh gvm-installer
 	gvm install go1.21.1
 	gvm use go1.21.1 --default
 	yay -Rs go
 
 desktop:  ## Install and configure the desktop environment
-	git clone https://github.com/deifyed/statusmsg.git ${HOME}/.local/src/statusmsg && $(cd ${HOME}/.local/src/statusmsg && make && make install)
-	git clone https://github.com/deifyed/topbg.git ${HOME}/.local/src/topbg && $(cd ${HOME}/.local/src/topbg && make && make install)
-	git clone https://github.com/deifyed/wstoggler.git ${HOME}/.local/src/wstoggler && $(cd ${HOME}/.local/src/wstoggler && make && make install)
+	git clone https://github.com/deifyed/statusmsg.git ${HOME}/.local/src/statusmsg && cd ${HOME}/.local/src/statusmsg && make build && make install
+	git clone https://github.com/deifyed/topbg.git ${HOME}/.local/src/topbg && cd ${HOME}/.local/src/topbg && make build && make install
+	git clone https://github.com/deifyed/wstoggler.git ${HOME}/.local/src/wstoggler && cd ${HOME}/.local/src/wstoggler && make build && make install
 	yay -S \
 		ttf-firacode ttf-firacode-nerd \
 		sway swayidle swaylock swaybg wofi \
