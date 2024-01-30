@@ -32,6 +32,7 @@ alias gc='git commit'
 alias gcmr='git commit -m "$(uuidgen)"'
 alias gcamend='git commit --amend --no-edit'
 alias gp='git push'
+alias gco='git checkout'
 
 ### Terraform
 alias tfswitch="tfswitch --bin ~/.local/bin/terraform"
