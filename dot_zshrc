@@ -22,6 +22,7 @@ export HELM_HOME="$HOME/.config/helm"
 export DENO_INSTALL=$HOME/.local/share/deno
 export PATH=$HOME/.local/bin:$HOME/.local/share/npm/modules/bin:$PATH::~/.krew/bin:$DENO_INSTALL/bin:/opt/android-sdk/platform-tools:/usr/local/bin
 export PATH=$PATH:$HOME/.local/lib/n/bin:$HOME/.luarocks/bin
+export PATH=$PATH:$HOME/.nix-profile/bin
 
 export PIPEWIRE_LATENCY="128/44100"
 
@@ -116,6 +117,7 @@ plugins=(
   gpg-agent
 	fzf
   kube-ps1
+  nix-shell
 )
 
 zstyle :omz:plugins:ssh-agent lifetime 4h

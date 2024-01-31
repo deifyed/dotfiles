@@ -11,7 +11,13 @@ dir_info() {
 }
 
 last_command_info() {
-	echo " %(?.%F{$primarycolor}λ%f.%F{$secondarycolor}λ%f)"
+  local delim="λ"
+
+  if [[ -n ${IN_NIX_SHELL+x} ]]; then
+    delim="Ξ"
+  fi
+
+	echo " %(?.%F{$primarycolor}${delim}%f.%F{$secondarycolor}${delim}%f)"
 }
 
 mkube_info() {
