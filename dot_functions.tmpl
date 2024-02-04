@@ -2,7 +2,7 @@
 mkcd() { mkdir -p "$@" && cd "$_"; }
 scratch() { mkdir -p "/tmp/scratchfolder" && cd "/tmp/scratchfolder" }
 sman() { curl cht.sh/$1 }
-bw() { /usr/bin/bw --session $(cat ~/.bwsession) $@ }
+bw() { /usr/bin/bw --session $(cat {{ .bwSessionPath }}) $@ }
 okctl() { $(ovm current -p) $@ }
 netup() { sudo netctl start $1 && sudo netctl wait-online $1 }
 passgen() { pwgen -sync $1 | cut -d' ' -f1 | wl-copy -n }
@@ -154,4 +154,12 @@ profilectl() {
             activate-profile $2
             ;;
     esac
+}
+
+bwlogin() {
+  /usr/bin/bw login julius@tuuturu.io --raw >> {{ .bwSessionPath }}
+}
+
+bwunlock() {
+  /usr/bin/bw unlock --raw >> {{ .bwSessionPath }}
 }

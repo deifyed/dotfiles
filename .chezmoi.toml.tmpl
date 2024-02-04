@@ -2,12 +2,14 @@
 {{ $email := promptString "email" -}}
 {{ $navi_openai_token := promptString "NaVi Open AI token" -}}
 {{ $gpgsignkey := promptString "GPG signing key ID" -}}
+{{ $bwSessionPath := promptString "Bitwarden session token path" -}}
 
 [data]
     name = {{ $name | quote }}
     email = {{ $email | quote }}
     navi_openai_token = {{ $navi_openai_token | quote }}
     gpgsignkey = {{ $gpgsignkey | quote }}
+    bwSessionPath = {{ $bwSessionPath | quote }}
 
 [diff]
     pager = "delta"
