@@ -1,8 +1,8 @@
-{{ $name := promptString "name" -}}
-{{ $email := promptString "email" -}}
-{{ $navi_openai_token := promptString "NaVi Open AI token" -}}
-{{ $gpgsignkey := promptString "GPG signing key ID" -}}
-{{ $bwSessionPath := promptString "Bitwarden session token path" -}}
+{{ $name := promptStringOnce "name" -}}
+{{ $email := promptStringOnce "email" -}}
+{{ $navi_openai_token := promptStringOnce "NaVi Open AI token" -}}
+{{ $gpgsignkey := promptStringOnce "GPG signing key ID" -}}
+{{ $bwSessionPath := promptStringOnce "Bitwarden session token path" -}}
 
 [data]
     name = {{ $name | quote }}
