@@ -1,0 +1,9 @@
+[Unit]
+Description=Runs a Glance web server
+
+[Service]
+Type=simple
+ExecStart=/home/origo/.local/bin/glance -config ${HOME}/.config/glance/config.yaml
+
+[Install]
+WantedBy=default.target
