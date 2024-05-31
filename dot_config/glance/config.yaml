@@ -1,0 +1,68 @@
+server:
+  host: localhost
+  port: 9999
+pages:
+  - name: Home
+    columns:
+      - size: small
+        widgets:
+          - type: calendar
+
+          - type: videos
+            channels:
+              - UC6QbRP40wIxGgwPo45BgA4w # Pol Tarres
+              - UCTK4SLXIIvcFNeUYpv9Prvg # Chris Birch
+              - UCY3mZIqfQh71JZBiWTQ3I7A # Adam Riemann
+              - UCAR30oDTNbJE-Zd2NDg1mTQ # Electric Callboy
+              - UC8ENHE5xdFSwx71u3fDH5Xw # thePrimeagen
+
+          - type: twitch-channels
+            channels:
+              - theprimeagen
+              - asmongold
+
+      - size: full
+        widgets:
+          - type: rss
+            limit: 10
+            collapse-after: 10
+            cache: 3h
+            feeds:
+              - url: https://www.aftenposten.no/rss
+                title: Aftenposten
+              - url: https://hnrss.org/frontpage
+                title: Hacker News
+              - url: http://www.advpulse.com/feed/
+                title: ADV Pulse
+              - url: http://feeds.feedburner.com/ItsFoss
+                title: It's FOSS
+              - url: http://opensource.com/feed
+                title: Opensource.com
+
+          - type: reddit
+            subreddit: superstonk
+            show-thumbnails: true
+
+      - size: small
+        widgets:
+          - type: weather
+            location: Revetal, Norway
+
+          - type: stocks
+            stocks:
+              - symbol: GME
+                name: Gamestop
+          - type: stocks
+            stocks:
+              - symbol: SPY
+                name: S&P 500
+              - symbol: BTC-USD
+                name: Bitcoin
+              - symbol: AAPL
+                name: Apple
+              - symbol: MSFT
+                name: Microsoft
+              - symbol: GOOGL
+                name: Google
+              - symbol: AMD
+                name: AMD
