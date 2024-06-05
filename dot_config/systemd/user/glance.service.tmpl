@@ -1,5 +1,7 @@
 [Unit]
 Description=Runs a Glance web server
+Requires=wait-for-network.service
+After=wait-for-network.service
 
 [Service]
 Type=simple
