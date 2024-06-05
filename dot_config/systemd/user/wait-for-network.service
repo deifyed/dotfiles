@@ -1,0 +1,7 @@
+[Unit]
+Description=Pings a server until it becomes reachable
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bash -c 'while ! ping -c1 -w1 tuuturu.io; do sleep 1; done'
+TimeoutStartSec=60s
