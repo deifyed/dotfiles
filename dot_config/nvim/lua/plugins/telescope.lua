@@ -3,6 +3,9 @@ return {
   config = function()
     require("telescope").setup({
       defaults = {
+        path_display = {
+          "filename_first",
+        },
         file_ignore_patterns = { "node_modules", "target", "dist", "build" },
         mappings = {
           i = {
