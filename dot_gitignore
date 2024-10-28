@@ -7,3 +7,5 @@ tagger
 
 node_modules/
 generated-sources/
+
+.aider*
