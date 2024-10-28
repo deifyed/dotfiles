@@ -13,6 +13,14 @@ emojis = [
         "emoji": "👌",
         "description": "Improve",
     },
+    {  # For small deletes
+        "emoji": "👌",
+        "description": "Remove",
+    },
+    {  # For small things
+        "emoji": "👌",
+        "description": "Use",
+    },
     {  # For fixing bugs
         "emoji": "🐛",
         "description": "Fix",
@@ -35,9 +43,9 @@ for item in emojis:
     list_output += f'{item["emoji"]} {item["description"]}\n'
 
 process = subprocess.run(
-        MENU_COMMAND,
-        capture_output=True,
-        input=list_output.encode('utf-8')
+    MENU_COMMAND,
+    capture_output=True,
+    input=list_output.encode('utf-8')
 )
 
 target = process.stdout.strip()
