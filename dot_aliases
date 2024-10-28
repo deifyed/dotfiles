@@ -34,6 +34,7 @@ alias gcamend='git commit --amend --no-edit'
 alias gp='git push'
 alias gco='git checkout'
 alias glo='git log --oneline'
+alias gcp='git cherry-pick'
 
 ### Terraform
 alias tfswitch="tfswitch --bin ~/.local/bin/terraform"
