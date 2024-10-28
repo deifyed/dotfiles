@@ -108,9 +108,26 @@ gwc() {
 }
 
 bwlogin() {
-  /usr/bin/bw login julius@tuuturu.io --raw >> {{ .bwSessionPath }}
+  /usr/bin/bw login {{ .privateEmail }} --raw > {{ .bwSessionPath }} || \
+    /usr/bin/bw unlock --raw > {{ .bwSessionPath }}
 }
 
-bwunlock() {
-  /usr/bin/bw unlock --raw >> {{ .bwSessionPath }}
+qa() {
+  gh pr create \
+    --title "T-$(git rev-parse --abbrev-ref HEAD|cut -d'-' -f2)" \
+    --editor
+}
+
+work() {
+  set-work-profile
+  sudo netctl start work
+}
+
+home() {
+  set-laptop-profile
+  sudo netctl start home
+}
+
+dnm() {
+  git diff $(git diff --name-only | head -1)
 }

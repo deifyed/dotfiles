@@ -1,5 +1,6 @@
 {{ $name := promptStringOnce . "name" "Full name" -}}
 {{ $email := promptStringOnce . "email" "Email address" -}}
+{{ $privateEmail := promptStringOnce . "privateEmail" "Private email address" -}}
 {{ $navi_openai_token := promptStringOnce . "navi_openai_token" "NaVi Open AI token" -}}
 {{ $gpgsignkey := promptStringOnce . "gpgsignkey" "GPG signing key ID" -}}
 {{ $bwSessionPath := promptStringOnce . "bwSessionPath" "Bitwarden session token path" -}}
@@ -8,6 +9,7 @@
 [data]
     name = {{ $name | quote }}
     email = {{ $email | quote }}
+    privateEmail = {{ $privateEmail | quote }}
     navi_openai_token = {{ $navi_openai_token | quote }}
     gpgsignkey = {{ $gpgsignkey | quote }}
     bwSessionPath = {{ $bwSessionPath | quote }}
