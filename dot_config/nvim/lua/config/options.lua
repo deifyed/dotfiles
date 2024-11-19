@@ -3,6 +3,7 @@
 -- Add any additional options here
 vim.opt.mouse = ""
 vim.opt.colorcolumn = "120"
+vim.opt.textwidth = 120
 
 vim.cmd("ab aa å")
 vim.cmd("ab AA Å")
