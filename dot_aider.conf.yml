@@ -300,7 +300,7 @@ dark-mode: true
 #  - zzz
 
 ## Use VI editing mode in the terminal (default: False)
-#vim: false
+vim: true
 
 ## Specify the language to use in the chat (default: None, uses system settings)
 #chat-language: xxx
@@ -360,7 +360,7 @@ dark-mode: true
 #gui: false
 
 ## Enable/disable suggesting shell commands (default: True)
-#suggest-shell-commands: true
+suggest-shell-commands: false
 
 ## Enable/disable fancy input with history and completion (default: True)
 #fancy-input: true
