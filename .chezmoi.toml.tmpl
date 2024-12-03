@@ -6,6 +6,7 @@
 {{ $gpgsignkey := promptStringOnce . "gpgsignkey" "GPG signing key ID" -}}
 {{ $bwSessionPath := promptStringOnce . "bwSessionPath" "Bitwarden session token path" -}}
 {{ $anthropic_api_key := promptStringOnce . "anthropic_api_key" "Anthropic token" -}}
+{{ $openai_api_key := promptStringOnce . "openai_api_key" "OpenAI token" -}}
 
 [data]
     name = {{ $name | quote }}
@@ -16,6 +17,7 @@
     gpgsignkey = {{ $gpgsignkey | quote }}
     bwSessionPath = {{ $bwSessionPath | quote }}
     anthropic_api_key = {{ $anthropic_api_key | quote }}
+    openai_api_key = {{ $openai_api_key | quote }}
 
 [diff]
     pager = "delta"
