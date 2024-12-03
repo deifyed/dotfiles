@@ -13,9 +13,12 @@ export EDITOR=nvim
 export VISUAL=nvim
 export VDIRSYNCER_CONFIG=${HOME}/life/contacts/.vdirsyncer/config
 
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
 export XDG_DESKTOP_DIR="/tmp"
 export XDG_DOWNLOAD_DIR="$HOME/downloads"
-export XDG_CONFIG_HOME="$HOME/.config"
 
 export HELM_HOME="$HOME/.config/helm"
 
@@ -168,3 +171,4 @@ set -o vi
 export PRE_COMMIT_ALLOW_NO_CONFIG=1 # Useful when using pre-commit in a monorepo environment
 export FZF_DEFAULT_OPTS='--bind=shift-tab:up,tab:down' # Tab and shift-tab to navigate fzf
 export ANTHROPIC_API_KEY={{ .anthropic_api_key }}
+export OPENAI_API_KEY={{ .openai_api_key }}
