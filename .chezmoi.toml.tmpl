@@ -1,6 +1,7 @@
 {{ $name := promptStringOnce . "name" "Full name" -}}
 {{ $email := promptStringOnce . "email" "Email address" -}}
 {{ $usage := promptStringOnce . "usage" "Usage type (work, private)" -}}
+{{ $keyboard := promptStringOnce . "keyboard" "Keyboard type (advantage360,)" }}
 {{ $privateEmail := promptStringOnce . "privateEmail" "Private email address" -}}
 {{ $gpgsignkey := promptStringOnce . "gpgsignkey" "GPG signing key ID" -}}
 {{ $bwSessionPath := promptStringOnce . "bwSessionPath" "Bitwarden session token path" -}}
@@ -11,6 +12,7 @@
     name = {{ $name | quote }}
     email = {{ $email | quote }}
     usage = {{ $usage | quote }}
+    keyboard = {{ $keyboard | quote }}
     privateEmail = {{ $privateEmail | quote }}
     gpgsignkey = {{ $gpgsignkey | quote }}
     bwSessionPath = {{ $bwSessionPath | quote }}

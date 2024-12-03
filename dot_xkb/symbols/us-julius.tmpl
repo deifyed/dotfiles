@@ -1,7 +1,11 @@
 default partial alphanumeric_keys
 xkb_symbols "basic" {
   include "us(altgr-intl)"
+  {{ if eq .keyboard "advantage360" }}
+  include "level3(caps_switch)"
+  {{ else }}
   include "level3(ralt_switch)"
+  {{- end}}
 
   name[Group1] = "English (US, international with Norwegian characters)";
     key <AD03> { [ e, E, ae, AE ] };
