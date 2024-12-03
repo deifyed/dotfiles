@@ -1,5 +1,6 @@
 {{ $name := promptStringOnce . "name" "Full name" -}}
 {{ $email := promptStringOnce . "email" "Email address" -}}
+{{ $usage := promptStringOnce . "usage" "Usage type (work, private)" -}}
 {{ $privateEmail := promptStringOnce . "privateEmail" "Private email address" -}}
 {{ $navi_openai_token := promptStringOnce . "navi_openai_token" "NaVi Open AI token" -}}
 {{ $gpgsignkey := promptStringOnce . "gpgsignkey" "GPG signing key ID" -}}
@@ -9,6 +10,7 @@
 [data]
     name = {{ $name | quote }}
     email = {{ $email | quote }}
+    usage = {{ $usage | quote }}
     privateEmail = {{ $privateEmail | quote }}
     navi_openai_token = {{ $navi_openai_token | quote }}
     gpgsignkey = {{ $gpgsignkey | quote }}
