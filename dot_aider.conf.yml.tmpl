@@ -24,7 +24,11 @@
 #anthropic-api-key: xxx
 
 ## Specify the model to use for the main chat
+{{- if eq .usage "work" }}
 model: gpt-4o-2024-11-20
+{{ else }}
+#model: xxx
+{{- end }}
 
 ## Use claude-3-opus-20240229 model for the main chat
 #opus: false
