@@ -11,3 +11,5 @@ vim.cmd("ab ae æ")
 vim.cmd("ab AE Æ")
 vim.cmd("ab oe ø")
 vim.cmd("ab OE Ø")
+
+vim.opt.laststatus = 3 -- Avante recommandation
