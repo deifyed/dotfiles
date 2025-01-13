@@ -33,6 +33,10 @@ emojis = [
         "emoji": "📦",
         "description": "Bump",
     },
+    {  # For work in progress
+     "emoji": "🚧",
+     "description": "WIP"
+    },
 ]
 
 MENU_COMMAND = 'wofi -bIi -d'.split()
