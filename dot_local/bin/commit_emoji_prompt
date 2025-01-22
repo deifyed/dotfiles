@@ -21,6 +21,10 @@ emojis = [
         "emoji": "👌",
         "description": "Use",
     },
+    {  # For refactoring
+        "emoji": "🚧",
+        "description": "Refactor",
+    },
     {  # For fixing bugs
         "emoji": "🐛",
         "description": "Fix",
@@ -39,17 +43,15 @@ emojis = [
     },
 ]
 
-MENU_COMMAND = 'wofi -bIi -d'.split()
-CLIPBOARD_COMMAND = 'wl-copy'.split()
+MENU_COMMAND = "wofi -bIi -d".split()
+CLIPBOARD_COMMAND = "wl-copy".split()
 
-list_output = ''
+list_output = ""
 for item in emojis:
-    list_output += f'{item["emoji"]} {item["description"]}\n'
+    list_output += f"{item['emoji']} {item['description']}\n"
 
 process = subprocess.run(
-    MENU_COMMAND,
-    capture_output=True,
-    input=list_output.encode('utf-8')
+    MENU_COMMAND, capture_output=True, input=list_output.encode("utf-8")
 )
 
 target = process.stdout.strip()
