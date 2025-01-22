@@ -1,12 +1,15 @@
 return {
   "vimwiki/vimwiki",
-  config = function()
+  init = function()
     vim.g.vimwiki_list = {
       {
-        path = "~/wiki/",
+        path = "~/wiki",
         syntax = "markdown",
         ext = ".md",
       },
+    }
+    vim.g.vimwiki_ext2syntax = {
+      [".md"] = "markdown",
     }
   end,
 }
