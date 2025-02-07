@@ -108,7 +108,7 @@ gwc() {
 }
 
 bwlogin() {
-  /usr/bin/bw login {{ .privateEmail }} --raw > {{ .bwSessionPath }} || \
+  /usr/bin/bw login {{ .bwEmail }} --raw > {{ .bwSessionPath }} || \
     /usr/bin/bw unlock --raw > {{ .bwSessionPath }}
 }
 

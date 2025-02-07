@@ -1,23 +1,14 @@
-{{ $name := promptStringOnce . "name" "Full name" -}}
-{{ $email := promptStringOnce . "email" "Email address" -}}
-{{ $usage := promptStringOnce . "usage" "Usage type (work, private)" -}}
-{{ $keyboard := promptStringOnce . "keyboard" "Keyboard type (advantage360,)" }}
-{{ $privateEmail := promptStringOnce . "privateEmail" "Private email address" -}}
-{{ $gpgsignkey := promptStringOnce . "gpgsignkey" "GPG signing key ID" -}}
-{{ $bwSessionPath := promptStringOnce . "bwSessionPath" "Bitwarden session token path" -}}
-{{ $anthropic_api_key := promptStringOnce . "anthropic_api_key" "Anthropic token" -}}
-{{ $openai_api_key := promptStringOnce . "openai_api_key" "OpenAI token" -}}
-
 [data]
-    name = {{ $name | quote }}
-    email = {{ $email | quote }}
-    usage = {{ $usage | quote }}
-    keyboard = {{ $keyboard | quote }}
-    privateEmail = {{ $privateEmail | quote }}
-    gpgsignkey = {{ $gpgsignkey | quote }}
-    bwSessionPath = {{ $bwSessionPath | quote }}
-    anthropic_api_key = {{ $anthropic_api_key | quote }}
-    openai_api_key = {{ $openai_api_key | quote }}
+    name = "name"
+    email = "user@example.com"
+    usage = "private" # (private,work)
+    keyboard = "default" # (default,advantage360)
+    gpgsignkey = "keyid"
+    bwSessionPath = "path"
+    bwEmail = "user@example.com"
+    anthropic_api_key = "key"
+    openai_api_key = "key"
+    aider_model = ""
 
 [diff]
     pager = "delta"

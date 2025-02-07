@@ -24,9 +24,9 @@
 #anthropic-api-key: xxx
 
 ## Specify the model to use for the main chat
-{{- if eq .usage "work" }}
-model: gpt-4o-2024-11-20
-{{- else -}}
+{{- if .aider_model }}
+model: {{ .aider_model }}
+{{- else }}
 #model: xxx
 {{- end }}
 

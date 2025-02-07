@@ -65,6 +65,7 @@ cli: /usr/bin/yay ${HOME}/.oh-my-zsh  ## Install and configure CLI
 
 dotfiles: ## Configure dotfiles
 	chezmoi init --apply deifyed
+	echo "vi ${HOME}/.config/chezmoi/chezmoi.toml to fill out required data"
 
 gvm: ${GVM_INSTALLER_PATH} ${HOME}/.gvm/ ## Install Go version manager
 
