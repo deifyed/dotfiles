@@ -5,11 +5,4 @@ vim.opt.mouse = ""
 vim.opt.colorcolumn = "120"
 vim.opt.textwidth = 120
 
-vim.cmd("ab aa å")
-vim.cmd("ab AA Å")
-vim.cmd("ab ae æ")
-vim.cmd("ab AE Æ")
-vim.cmd("ab oe ø")
-vim.cmd("ab OE Ø")
-
 vim.opt.laststatus = 3 -- Avante recommandation
