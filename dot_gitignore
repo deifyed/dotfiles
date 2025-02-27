@@ -1,4 +1,6 @@
 *.secret
+.npmrc
+
 .idea
 upgrade
 plan.file
