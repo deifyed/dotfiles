@@ -46,3 +46,6 @@ save_to_clipboard = true
 
 [window]
 decorations = "none"
+
+[keyboard]
+bindings = [{ key = "Escape", mods = "Shift", action = "ToggleViMode" }]
