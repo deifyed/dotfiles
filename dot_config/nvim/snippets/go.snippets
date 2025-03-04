@@ -1,17 +1,17 @@
 snippet tdt "table test function"
   func Test${1:name}(t *testing.T) {
-    testCases := []struct {
+    t.Parallel()
+
+    testCases := map[string]struct {
       name string
     }{
-      {
-        name: "Should ${2:test name}",
-      },
+      "Should ${2:test name}": {}
     }
 
-    for _, tc := range testCases {
+    for name, tc := range testCases {
       tc := tc
 
-      t.Run(tc.name, func(t *testing.T) {
+      t.Run(name, func(t *testing.T) {
         t.Parallel()
 
         ${0:${VISUAL}}
