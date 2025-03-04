@@ -1,0 +1,20 @@
+snippet tdt "table test function"
+  func Test${1:name}(t *testing.T) {
+    testCases := []struct {
+      name string
+    }{
+      {
+        name: "Should ${2:test name}",
+      },
+    }
+
+    for _, tc := range testCases {
+      tc := tc
+
+      t.Run(tc.name, func(t *testing.T) {
+        t.Parallel()
+
+        ${0:${VISUAL}}
+      })
+    }
+  }
