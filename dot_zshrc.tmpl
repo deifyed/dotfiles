@@ -6,8 +6,6 @@ source '/opt/kube-ps1/kube-ps1.sh'
 export ZSH="${HOME}/.oh-my-zsh"
 
 # Setting env
-export OK_DIR=${HOME}/origo
-
 export LC_ALL=en_US.UTF-8
 export EDITOR=nvim
 export VISUAL=nvim
@@ -169,12 +167,13 @@ complete -o nospace -C /usr/bin/nomad nomad
 complete -o nospace -C '/usr/local/bin/aws_completer' aws
 source <(kubectl completion zsh)
 
-source $HOME/.aliases
-source $HOME/.functions
+[[ -s "${HOME}/.aliases" ]] && source $HOME/.aliases
+[[ -s "${HOME}/.aliases.secret" ]] && source $HOME/.aliases
+[[ -s "${HOME}/.functions" ]] && source $HOME/.functions
+[[ -s "${HOME}/.functions.secret" ]] && source $HOME/.functions.secret
 
 set -o vi
 
-export PRE_COMMIT_ALLOW_NO_CONFIG=1 # Useful when using pre-commit in a monorepo environment
 export FZF_DEFAULT_OPTS='--bind=shift-tab:up,tab:down' # Tab and shift-tab to navigate fzf
 export ANTHROPIC_API_KEY={{ .anthropic_api_key }}
 export OPENAI_API_KEY={{ .openai_api_key }}
