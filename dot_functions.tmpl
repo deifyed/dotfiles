@@ -57,6 +57,12 @@ gdf() {
 	git diff --name-only HEAD~$1 HEAD | cat
 }
 
+ghpr() {
+  branch=$(git rev-parse --abbrev-ref HEAD | sed 's/-/ /g')
+
+  gh pr create --title="${branch}" --editor
+}
+
 yolo() {
 	current=`git branch --show-current`
 
