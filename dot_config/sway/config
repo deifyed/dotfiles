@@ -67,7 +67,7 @@ focus_follows_mouse no
     bindsym Control+Mod1+l exec python ~/.local/bin/secret_prompt
 
     # Lock screen
-    bindsym Mod1+l exec swaylock -fF  -c 000000
+    bindsym End exec swaylock -fF  -c 000000
 
     # Kill focused window
     bindsym $mod+q kill
