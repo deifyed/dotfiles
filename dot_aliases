@@ -35,6 +35,7 @@ alias gco='git checkout'
 alias glo='git log --oneline'
 alias gcp='git cherry-pick'
 alias grib='git rebase -i $(git merge-base HEAD origin/main)'
+alias gribs='git rebase -i $(git merge-base HEAD origin/master)'
 
 ### Terraform
 alias tfswitch="tfswitch --bin ~/.local/bin/terraform"
