@@ -137,3 +137,9 @@ home() {
 dnm() {
   git diff $(git diff --name-only | head -1)
 }
+
+taillog() {
+  local logGroup=$(aws logs describe-log-groups | jq -r '.logGroups[].logGroupName' | fzf)
+
+  aws logs tail --follow ${logGroup}
+}
