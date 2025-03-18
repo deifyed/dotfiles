@@ -94,7 +94,6 @@ alias syncthingopen="firefox --new-tab 127.0.0.1:8384"
 alias tildetown="ssh -i ~/.ssh/tildetown_rsa deifyed@tilde.town"
 
 ## Abbreviations
-alias tbltest="cat ~/.vim/plugin/deifyed/templates/tbltest.go | wl-copy -n"
 alias envkeys="env | cut -d'=' -f1"
 
 . ~/.aliases.secret
