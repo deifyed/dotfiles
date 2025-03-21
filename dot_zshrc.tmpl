@@ -29,8 +29,13 @@ export XDG_DOWNLOAD_DIR="$HOME/downloads"
 export HELM_HOME="$HOME/.config/helm"
 
 export DENO_INSTALL=$HOME/.local/share/deno
-export PATH=$HOME/.local/bin:$HOME/.local/share/npm/modules/bin:$PATH::~/.krew/bin:$DENO_INSTALL/bin:/opt/android-sdk/platform-tools:/usr/local/bin
-export PATH=$PATH:$HOME/.local/lib/n/bin:$HOME/.luarocks/bin
+export PATH=$PATH:/usr/local/bin
+export PATH=$PATH:/opt/android-sdk/platform-tools
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/share/npm/modules/bin
+export PATH=$PATH:$DENO_INSTALL/bin
+export PATH=$PATH:$HOME/.local/lib/n/bin
+export PATH=$PATH:$HOME/.luarocks/bin
 export PATH=$PATH:$HOME/.nix-profile/bin
 
 export PIPEWIRE_LATENCY="128/44100"
@@ -131,8 +136,6 @@ zstyle :omz:plugins:ssh-agent lifetime 4h
 
 source $ZSH/oh-my-zsh.sh
 
-[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -173,6 +176,8 @@ source <(kubectl completion zsh)
 [[ -s "${HOME}/.functions.secret" ]] && source $HOME/.functions.secret
 
 set -o vi
+
+eval "$(zoxide init zsh)"
 
 export ANTHROPIC_API_KEY={{ .anthropic_api_key }}
 export OPENAI_API_KEY={{ .openai_api_key }}
