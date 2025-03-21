@@ -19,6 +19,7 @@ alias vi='nvim' # vim is not always available. And shorter. And nvim
 alias vlt='vault'
 alias clip64="wl-paste -n | base64 -w 0 | wl-copy"
 alias ktfmt="java -jar $HOME/.local/bin/ktfmt-0.44-jar-with-dependencies.jar"
+alias gpsynchere="sudo gpctl cp \"/100GOPRO/*\" ."
 
 ## Command tweaks
 
@@ -85,7 +86,6 @@ alias list-local-hosts="nmap -sP 192.168.1.0/24"
 alias l='eza -lh'  # ls list
 alias ls='eza -lh' # ls list
 alias la='eza -ah' # ls all
-alias vlc='cvlc'
 alias curl="curlie"
 alias slack="/usr/bin/slack --ozone-platform-hint=auto"
 
