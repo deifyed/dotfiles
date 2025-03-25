@@ -379,13 +379,13 @@ default_mode "normal"
 // otherwise this will error if such a session exists.
 // Default: <RANDOM>
 // 
-session_name "Default"
+//session_name "Default"
  
 // When `session_name` is provided, attaches to that session
 // if it is already running or creates it otherwise.
 // Default: false
 // 
-attach_to_session true
+//attach_to_session true
  
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
@@ -451,4 +451,4 @@ show_startup_tips false
 // Whether to show release notes on first version run
 // Default: true
 // 
-// show_release_notes false
+show_release_notes false
