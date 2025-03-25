@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-#
 
 CURRENT_WORKING_DIRECTORY="$(swaymsg -t get_tree |
   jq '.. | (.nodes? // empty)[] | select(.focused == true).pid? // empty' |
@@ -13,6 +12,6 @@ if [ -d "$CURRENT_WORKING_DIRECTORY" ]; then
   ghostty --working-directory="$CURRENT_WORKING_DIRECTORY" --command=/usr/bin/zellij &
   disown
 else
-  ghostty &
+  ghostty --command=/usr/bin/zellij &
   disown
 fi
