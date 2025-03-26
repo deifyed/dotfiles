@@ -49,6 +49,10 @@ prunedocker() {
 ##################################################
 ##### Git
 ##################################################
+git_main_branch() {
+  git branch | cut -c 3- | grep -E '^master$|^main$'
+}
+
 gdf() {
 	if [ -z "$1" ]; then
 		    echo "usage: $0 number_of_commits"
@@ -83,6 +87,9 @@ yolo() {
 	git push -f
 }
 
+gcom() {
+  git checkout $(git_main_branch)
+}
 ##################################################
 ##### AWS
 ##################################################
@@ -90,6 +97,11 @@ profile-select() {
     export AWS_PROFILE=$(aws configure list-profiles | fzf)
 }
 
+taillog() {
+  local logGroup=$(aws logs describe-log-groups | jq -r '.logGroups[].logGroupName' | fzf)
+
+  aws logs tail --follow ${logGroup}
+}
 ##################################################
 ##### Port forwarding
 ##################################################
@@ -118,12 +130,6 @@ bwlogin() {
     /usr/bin/bw unlock --raw > {{ .bwSessionPath }}
 }
 
-qa() {
-  gh pr create \
-    --title "T-$(git rev-parse --abbrev-ref HEAD|cut -d'-' -f2)" \
-    --editor
-}
-
 work() {
   set-work-profile
   sudo netctl start origo-psk
@@ -136,10 +142,4 @@ home() {
 
 dnm() {
   git diff $(git diff --name-only | head -1)
-}
-
-taillog() {
-  local logGroup=$(aws logs describe-log-groups | jq -r '.logGroups[].logGroupName' | fzf)
-
-  aws logs tail --follow ${logGroup}
 }
