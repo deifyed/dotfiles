@@ -28,7 +28,6 @@ alias gd='git diff'
 alias ga='git add'
 alias gap='git add $_'
 alias gc='git commit'
-alias gcmr='git commit -m "$(uuidgen)"'
 alias gcamend='git commit --amend --no-edit'
 alias gp='git push'
 alias gco='git checkout'
@@ -43,6 +42,8 @@ alias tf="terraform"
 alias tfi="terraform init"
 alias tfp="terraform plan -out plan.file"
 alias tfa="terraform apply plan.file && rm plan.file"
+alias tfs="terraform show plan.file"
+alias tfsc="terraform show -no-color plan.file | wl-copy"
 alias tpc='docker run -e "USERID=$(id -u):$(id -g)" -v $(pwd):/lint -w /lint ghcr.io/antonbabenko/pre-commit-terraform:v1.76.0 run -a'
 
 ### AWS
