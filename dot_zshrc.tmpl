@@ -164,7 +164,7 @@ export SDKMAN_DIR="${HOME}/.sdkman"
 
 [[ -s "${HOME}/.gvm/scripts/gvm" ]] && source "${HOME}/.gvm/scripts/gvm"
 
-complete -o nospace -C /usr/bin/terraform terraform
+complete -o nospace -C ${HOME}/.local/bin/terraform terraform
 complete -o nospace -C /usr/bin/kustomize kustomize
 complete -o nospace -C /usr/bin/nomad nomad
 complete -o nospace -C '/usr/local/bin/aws_completer' aws
