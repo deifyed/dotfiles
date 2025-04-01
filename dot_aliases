@@ -33,8 +33,7 @@ alias gp='git push'
 alias gco='git checkout'
 alias glo='git log --oneline'
 alias gcp='git cherry-pick'
-alias grib='git rebase -i $(git merge-base HEAD origin/main)'
-alias gribs='git rebase -i $(git merge-base HEAD origin/master)'
+alias ghprv='gh pr view -w'
 
 ### Terraform
 alias tfswitch="tfswitch --bin ~/.local/bin/terraform"
@@ -48,8 +47,8 @@ alias tpc='docker run -e "USERID=$(id -u):$(id -g)" -v $(pwd):/lint -w /lint ghc
 
 ### AWS
 alias awp="profile-select"
+alias awpc="unset AWS_REGION AWS_SESSION_TOKEN AWS_PROFILE AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY"
 alias eksctl="eksctl --color fabulous"
-alias clear-aws-env="unset AWS_REGION AWS_SESSION_TOKEN AWS_PROFILE AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY"
 
 ### Docker
 alias dc='docker-compose' # You can now type dc up -d
