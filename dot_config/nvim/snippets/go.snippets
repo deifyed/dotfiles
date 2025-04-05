@@ -18,3 +18,13 @@ snippet tdt "table test function"
       })
     }
   }
+
+snippet iferr "if error not nil"
+  if err != nil {
+    return fmt.Errorf("${1:ing}: %w")
+  }
+
+snippet ifnerr "if error not nil, return nil and formatted error"
+  if err != nil {
+    return nil, fmt.Errorf("${1:ing}: %w")
+  }
