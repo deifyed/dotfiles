@@ -34,6 +34,7 @@ alias gco='git checkout'
 alias glo='git log --oneline'
 alias gcp='git cherry-pick'
 alias ghprv='gh pr view -w'
+alias ghprc="gh pr view --json url | jq -r '.url' | wl-copy"
 
 ### Terraform
 alias tfswitch="tfswitch --bin ~/.local/bin/terraform"
