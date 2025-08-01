@@ -44,3 +44,4 @@
 window-decoration = false
 resize-overlay = never
 theme = GruvboxDark
+background-opacity = 0.9
