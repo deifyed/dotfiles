@@ -172,8 +172,9 @@ source <(kubectl completion zsh)
 
 [[ -s "${HOME}/.aliases" ]] && source $HOME/.aliases
 [[ -s "${HOME}/.aliases.secret" ]] && source $HOME/.aliases
-[[ -s "${HOME}/.functions" ]] && source $HOME/.functions
-[[ -s "${HOME}/.functions.secret" ]] && source $HOME/.functions.secret
+[[ -s "${HOME}/.functions" ]] && source "$HOME/.functions"
+[[ -s "${HOME}/.functions.secret" ]] && source "$HOME/.functions.secret"
+[[ -s "${HOME}/.variables.secret" ]] && source "$HOME/.variables.secret"
 
 set -o vi
 
