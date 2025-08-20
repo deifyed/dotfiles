@@ -147,3 +147,9 @@ home() {
 dnm() {
   git diff $(git diff --name-only | head -1)
 }
+
+zactivate() {
+  zellij action rename-tab code
+  zellij action new-tab -n console
+  zellij action move-tab left
+}
