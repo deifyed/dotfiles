@@ -7,7 +7,7 @@
   navigate = true
   light = false
 [diff]
-  tool = nvim -d
+	tool = nvimdiff
   colorMoved = default
 [init]
   defaultBranch = main
@@ -27,3 +27,5 @@
   date = local
 [pull]
 	ff = only
+[diff "tool.nvimdiff"]
+	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
