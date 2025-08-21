@@ -1,0 +1,20 @@
+snippet vbase-julius "SFC scaffolder"
+  <template>
+    <div class="${1:Name}">
+      <h1>Hello $1</h1>
+    </div>
+  </template>
+
+  <script lang="ts">
+  import { defineComponent } from 'vue'
+
+  export default defineComponent({
+    name: '$1',
+  })
+  </script>
+
+  <style lang="scss" scoped>
+  .$1 {}
+  </style>
+
+
