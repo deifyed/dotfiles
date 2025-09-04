@@ -59,6 +59,7 @@ alias dc='docker-compose' # You can now type dc up -d
 alias postgres='docker run --rm -e POSTGRES_PASSWORD=postgres -p 5432:5432 --name postgres -d postgres'
 alias redis='docker run --rm -p 6379:6379 --name redis -d redis' # Starts redis
 alias keycloak='docker run --rm -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -e KEYCLOAK_LOGLEVEL=debug -p 5000:8080 --name keycloak -d jboss/keycloak'
+alias swagger='docker run --rm -p 8080:8080 docker.swagger.io/swaggerapi/swagger-ui:latest'
 
 ### Kubernetes
 alias kwatch="watch kubectl get pods" # Watches pods

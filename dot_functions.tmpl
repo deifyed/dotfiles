@@ -46,6 +46,20 @@ prunedocker() {
 	docker system prune --volumes # Removes most docker data
 }
 
+swagger-local() {
+  if [ $# -ne 1 ]; then
+    echo "Usage: swagger-local [FILE]"
+    echo "Example: swagger-local specification.yaml"
+    return 1
+  fi
+
+  docker run \
+    --publish 8080:80 \
+    --env SPEC_URL=/spec/openapi.yaml \
+    --volume $(pwd)/$1:/usr/share/nginx/html/spec/openapi.yaml \
+    redocly/redoc
+}
+
 ##################################################
 ##### Git
 ##################################################
@@ -152,4 +166,10 @@ zactivate() {
   zellij action rename-tab code
   zellij action new-tab -n console
   zellij action move-tab left
+}
+
+nvim-config-cleaner() {
+  rm -rf ${HOME}/.local/share/nvim
+  rm -rf ${HOME}/.local/state/nvim
+  rm -rf ${HOME}/.cache/nvim
 }
