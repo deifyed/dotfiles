@@ -43,5 +43,5 @@
 # resize-overlay-duration = 4s 200ms
 window-decoration = false
 resize-overlay = never
-theme = GruvboxDark
+theme = Gruvbox Dark
 background-opacity = 0.9
