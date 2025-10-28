@@ -45,3 +45,4 @@ window-decoration = false
 resize-overlay = never
 theme = Gruvbox Dark
 background-opacity = 0.9
+keybind = shift+enter=text:\x1b\r
