@@ -19,7 +19,7 @@ return {
             hints = {
               assignVariableTypes = false,
               compositeLiteralFields = true,
-              compositeLiteralTypes = true,
+              compositeLiteralTypes = false,
               constantValues = true,
               functionTypeParameters = false,
               parameterNames = false,
