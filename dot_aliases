@@ -97,6 +97,9 @@ alias myip="curl http://icanhazip.com"
 alias syncthingopen="firefox --new-tab 127.0.0.1:8384"
 alias tildetown="ssh -i ~/.ssh/tildetown_rsa deifyed@tilde.town"
 
+alias devci="cp -r ${HOME}/output/code/origo/devcontainer ./.devcontainer"
+alias devc="devcontainer --workspace-folder ."
+
 ## Abbreviations
 alias envkeys="env | cut -d'=' -f1"
 
