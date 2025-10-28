@@ -101,6 +101,24 @@ yolo() {
 	git push -f
 }
 
+gwip() {
+	current=`git branch --show-current`
+
+	if [[ "${current}" == "master" ]]; then
+		echo "No WIP commits on master"
+
+		return 1
+	fi
+
+	if [[ "${current}" == "main" ]]; then
+		echo "No WIP commits on main"
+
+		return 1
+	fi
+
+  git commit -m'🚧 WIP' && git push
+}
+
 gcom() {
   git checkout $(git_main_branch)
 }
@@ -119,6 +137,39 @@ taillog() {
   local logGroup=$(aws logs describe-log-groups | jq -r '.logGroups[].logGroupName' | fzf)
 
   aws logs tail --follow ${logGroup}
+}
+
+scale() {
+  if [ -z "$1" ]; then
+    echo "Usage: scale <instances>"
+    return 1
+  fi
+  local desired=$1
+
+  # Get all clusters (one per line)
+  local clusters
+  clusters=$(aws ecs list-clusters --query 'clusterArns[]' --output text | tr '\t' '\n')
+
+  # Get all services per cluster, format "cluster:service"
+  local selection
+  selection=$(for c in $clusters; do
+      aws ecs list-services --cluster "$c" --query 'serviceArns[]' --output text \
+        | tr '\t' '\n' \
+        | sed -E "s-^arn:aws:ecs:[^:]+:[0-9]+:service/([^/]+)/(.+)-\1:\2-"
+    done \
+    | fzf --prompt="Select ECS service to scale > ")
+
+  if [ -z "$selection" ]; then
+    echo "No service selected"
+    return 1
+  fi
+
+  local cluster service
+  cluster=$(echo "$selection" | cut -d: -f1)
+  service=$(echo "$selection" | cut -d: -f2-)
+
+  echo "Scaling service '$service' in cluster '$cluster' to $desired tasks..."
+  aws ecs update-service --cluster "$cluster" --service "$service" --desired-count "$desired"
 }
 ##################################################
 ##### Port forwarding
