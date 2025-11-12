@@ -199,8 +199,8 @@ bwlogin() {
     /usr/bin/bw unlock --raw > {{ .bwSessionPath }}
 }
 
-work() {
-  set-work-profile
+office() {
+  set-office-profile
   sudo netctl start origo-psk
 }
 
