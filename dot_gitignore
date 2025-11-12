@@ -12,3 +12,5 @@ generated-sources/
 
 .aider*
 kls_database.db
+
+.claude/settings.local.json
