@@ -126,6 +126,14 @@ gcom() {
 grib() {
   git rebase -i $(git_main_branch)
 }
+
+gdz() {
+  local target=$(git status -s | grep -E '^ ' | fzf | cut -d' ' -f3)
+
+  echo $target | wl-copy
+
+  git diff $target
+}
 ##################################################
 ##### AWS
 ##################################################
