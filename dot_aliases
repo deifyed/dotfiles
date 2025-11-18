@@ -80,7 +80,7 @@ alias greptext='grep -Rln' # Looks for text recursively
 
 ## Networking
 alias ports='netstat -tulanp'
-alias list-local-hosts="nmap -sP 192.168.1.0/24"
+alias lslan="nmap -sP 192.168.1.0/24"
 
 ## Command modifications
 ### Div
