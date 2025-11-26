@@ -46,17 +46,22 @@ prunedocker() {
 	docker system prune --volumes # Removes most docker data
 }
 
-swagger-local() {
+swagger-open() {
   if [ $# -ne 1 ]; then
     echo "Usage: swagger-local [FILE]"
     echo "Example: swagger-local specification.yaml"
     return 1
   fi
 
+  local filename=$(basename -- "$1")
+  local extension=${filename##*.}
+
+  echo "Specification is available at http://localhost:8080/spec"
   docker run \
+    --rm \
     --publish 8080:80 \
-    --env SPEC_URL=/spec/openapi.yaml \
-    --volume $(pwd)/$1:/usr/share/nginx/html/spec/openapi.yaml \
+    --env SPEC_URL=spec.${extension} \
+    --volume $(pwd)/${filename}:/usr/share/nginx/html/spec.${extension} \
     redocly/redoc
 }
 
