@@ -61,6 +61,7 @@ alias keycloak='docker run --rm -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admi
 alias swagger='docker run --rm -p 8080:8080 docker.swagger.io/swaggerapi/swagger-ui:latest'
 
 ### Kubernetes
+alias k="kubectl"
 alias kwatch="watch kubectl get pods" # Watches pods
 alias kns="kubens"
 alias kdebug="kubectl debug --image=markeijsermans/debug:kitchen-sink -it --share-processes --copy-to=debugger"
@@ -68,9 +69,6 @@ alias kz="kustomize"
 alias k8s-show-ns="kubectl api-resources --verbs=list --namespaced -o name  | xargs -n 1 kubectl get --show-kind --ignore-not-found  -n"
 alias k3dup="k3d cluster create --registry-create tuuturu"
 alias k3ddown="k3d cluster delete tuuturu"
-
-### Python
-alias venv="python3 -m venv .venv"
 
 ### Grep
 alias grep='grep --color=auto'
