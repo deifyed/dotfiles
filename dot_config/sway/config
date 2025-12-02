@@ -29,6 +29,7 @@ font pango:SourceCodePro Medium 12
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Gets overridden by ./config.d/background
 output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+seat seat0 xcursor_theme Bibata-Modern-Ice 30
 
 default_border none
 focus_follows_mouse no
