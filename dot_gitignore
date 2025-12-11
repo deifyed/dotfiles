@@ -1,4 +1,4 @@
-*.secret
+*.secret*
 .npmrc
 
 .idea
