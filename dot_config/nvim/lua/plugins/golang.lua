@@ -20,7 +20,7 @@ return {
               assignVariableTypes = false,
               compositeLiteralFields = true,
               compositeLiteralTypes = false,
-              constantValues = true,
+              constantValues = false,
               functionTypeParameters = false,
               parameterNames = false,
               rangeVariableTypes = false,
