@@ -19,7 +19,7 @@ import subprocess
 #   ]
 # },
 
-EMOJI_DICT_PATH = os.path.join(os.path.expanduser('~'), '.oh-my-zsh/plugins/emoji-cli/dict/emoji.json')
+EMOJI_DICT_PATH = os.path.join(os.path.expanduser('~'), '.oh-my-zsh/plugins/emoji/gemoji_db.json')
 MENU_COMMAND = 'wofi -bIi -d'.split()
 CLIPBOARD_COMMAND = 'wl-copy'.split()
 
