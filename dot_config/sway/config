@@ -159,7 +159,7 @@ focus_follows_mouse no
     bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
-    #bindsym $mod+f fullscreen
+    bindsym $mod+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
     #bindsym $mod+Shift+space floating toggle
