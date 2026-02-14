@@ -18,7 +18,7 @@ return {
             },
             hints = {
               assignVariableTypes = false,
-              compositeLiteralFields = true,
+              compositeLiteralFields = false,
               compositeLiteralTypes = false,
               constantValues = false,
               functionTypeParameters = false,
