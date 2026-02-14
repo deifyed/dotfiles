@@ -237,3 +237,9 @@ nvim-config-cleaner() {
   rm -rf ${HOME}/.local/state/nvim
   rm -rf ${HOME}/.cache/nvim
 }
+
+clawd() {
+  . /tmp/claude_env
+
+  claude
+}
