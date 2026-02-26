@@ -9,6 +9,9 @@
 let mapleader=" "
 let maplocalleader="\\"
 
+" Yank to system clipboard
+set clipboard+=unnamedplus
+
 " Confirm to save changes before exiting modified buffer
 set formatoptions=jcroqlnt
 " Print line number
