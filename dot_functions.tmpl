@@ -55,8 +55,11 @@ swagger-open() {
 
   local filename=$(basename -- "$1")
   local extension=${filename##*.}
+  local specificationURL="http://localhost:8080/spec"
 
-  echo "Specification is available at http://localhost:8080/spec"
+  echo "$specificationURL" | wl-copy
+  echo "Specification is available at $specificationURL which has been put in your clipboard"
+
   docker run \
     --rm \
     --publish 8080:80 \
