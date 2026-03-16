@@ -87,6 +87,7 @@ alias ls='eza -lh' # ls list
 alias la='eza -ah' # ls all
 alias curl="curlie"
 alias slack="/usr/bin/slack --ozone-platform-hint=auto"
+alias zl="zellij -l zellij.kdl"
 
 ### Div
 alias vicfg="(cd $HOME/.config/nvim/ && vi)"
