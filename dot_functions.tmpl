@@ -27,7 +27,9 @@ h() {
 ##################################################
 #alias kset2="export KUBECONFIG=~/.kube/configs/$1.yaml"
 kset() {
-  export KUBECONFIG=~/.kube/configs/$1.yaml
+  local target=$(ls -1 ${HOME}/.kube/configs | fzf)
+
+  export KUBECONFIG=~/.kube/configs/$target
 }
 ksethere() {
 	export KUBECONFIG=${PWD}/kubeconfig.yaml
