@@ -4,7 +4,7 @@ alias s="secret" # Calls my secret manager
 
 ## Personal
 alias calendar='vi "+:Calendar"'
-alias wiki='cd ${HOME}/wiki && vi + -- index.md'
+alias wiki='(cd ${HOME}/wiki && vi + -- index.md)'
 alias lifetime="stat / | grep Birth | cut -d' ' -f3"
 
 ## Shortcuts
