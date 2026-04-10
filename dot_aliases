@@ -103,4 +103,6 @@ alias envkeys="env | cut -d'=' -f1"
 
 alias claude_usage_sync="uvx --from 'git+ssh://git@github.com/oslokommune/claude-leaderboard@main#subdirectory=claude-usage-tracker' sync-usage"
 
+alias scriptcd="cd ${HOME}/scripts/$(git_repo_name)"
+
 . ~/.aliases.secret
