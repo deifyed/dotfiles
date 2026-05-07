@@ -14,7 +14,13 @@
 [interactive]
   diffFilter = delta --color-only
 [merge]
+  tool = nvim3way
   conflictStyle = diff3
+[mergetool]
+  prompt = false
+  keepBackup = false
+[mergetool "nvim3way"]
+  cmd = nvim -d "$REMOTE" "$MERGED" "$LOCAL"
 [push]
   autoSetupRemote = true
 [url "ssh://git@github.com/"]
