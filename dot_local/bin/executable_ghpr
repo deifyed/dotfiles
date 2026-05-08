@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+REPO_NAME=$(basename -s .git $(git config --get remote.origin.url))
+GIT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+TMP_FILENAME="ghpr-${REPO_NAME}-${GIT_BRANCH}"
+TMP_FILEPATH="/tmp/${TMP_FILENAME}"
+
+ISSUE_PREFIX=""
+BRANCH_REST="$GIT_BRANCH"
+if [[ "$GIT_BRANCH" =~ ^([A-Za-z]+-[0-9]+)-(.*)$ ]]; then
+  ISSUE_PREFIX="${BASH_REMATCH[1]}"
+  BRANCH_REST="${BASH_REMATCH[2]}"
+elif [[ "$GIT_BRANCH" =~ ^([0-9]+)-(.*)$ ]]; then
+  ISSUE_PREFIX="${BASH_REMATCH[1]}"
+  BRANCH_REST="${BASH_REMATCH[2]}"
+fi
+
+TITLE="${BRANCH_REST//-/ }"
+
+case "${TITLE,,}" in
+"add "*) TITLE="✅ Add ${TITLE#* }" ;;
+"use "*) TITLE="👌 Use ${TITLE#* }" ;;
+"remove "*) TITLE="👌 Remove ${TITLE#* }" ;;
+"improve "*) TITLE="👌 Improve ${TITLE#* }" ;;
+"fix "*) TITLE="🐛 Fix ${TITLE#* }" ;;
+"refactor "*) TITLE="🚧 Refactor ${TITLE#* }" ;;
+esac
+
+if [[ -n "$ISSUE_PREFIX" ]]; then
+  TITLE="${ISSUE_PREFIX} ${TITLE}"
+fi
+
+echo $TITLE
+
+cat <<EOF >${TMP_FILEPATH}
+$TITLE
+
+This PR 
+EOF
+
+"${EDITOR:-vi}" "${TMP_FILEPATH}"
+
+if ! grep -q '[^[:space:]]' "${TMP_FILEPATH}"; then
+  echo "Aborting: PR description is empty." >&2
+  rm -f "${TMP_FILEPATH}"
+  exit 1
+fi
+
+PR_TITLE="$(sed -n '1p' "${TMP_FILEPATH}")"
+PR_BODY="$(tail -n +2 "${TMP_FILEPATH}" | sed -e '/./,$!d' | sed -e ':a' -e '/^\s*$/{$d;N;ba' -e '}')"
+
+if gh pr create --title "${PR_TITLE}" --body "${PR_BODY}"; then
+  rm -f "${TMP_FILEPATH}"
+fi
