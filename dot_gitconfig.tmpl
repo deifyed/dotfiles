@@ -19,8 +19,10 @@
 [mergetool]
   prompt = false
   keepBackup = false
+  writeToTemp = true
+  trustExitCode = true
 [mergetool "nvim3way"]
-  cmd = nvim -d "$REMOTE" "$MERGED" "$LOCAL"
+  cmd = nvim -d \"$REMOTE\" \"$MERGED\" \"$LOCAL\" -c \"wincmd w\"
 [push]
   autoSetupRemote = true
 [url "ssh://git@github.com/"]
