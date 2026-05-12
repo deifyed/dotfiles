@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+for cmd in aws fzf jq; do
+  command -v "$cmd" &>/dev/null || {
+    echo "Error: $cmd is required but not installed." >&2
+    exit 1
+  }
+done
+
+EDITOR="${EDITOR:-nvim}"
+
+tmpfile=""
+cleanup() { [[ -n "$tmpfile" && -f "$tmpfile" ]] && rm -f "$tmpfile"; }
+trap cleanup EXIT
+
+# List and select parameter
+param_name=$(
+  aws ssm describe-parameters \
+    --query 'Parameters[].Name' \
+    --output text | tr '\t' '\n' | sort | fzf --prompt="SSM Parameter: "
+) || exit 0
+
+[[ -z "$param_name" ]] && exit 0
+
+# Fetch parameter metadata (type, key-id)
+param_meta=$(aws ssm describe-parameters \
+  --parameter-filters "Key=Name,Values=$param_name" \
+  --output json)
+
+param_type=$(echo "$param_meta" | jq -r '.Parameters[0].Type')
+key_id=$(echo "$param_meta" | jq -r '.Parameters[0].KeyId // empty')
+
+# Fetch parameter value
+param_json=$(aws ssm get-parameter \
+  --name "$param_name" \
+  --with-decryption \
+  --output json)
+
+param_value=$(echo "$param_json" | jq -r '.Parameter.Value')
+param_version=$(echo "$param_json" | jq -r '.Parameter.Version')
+
+# Write pretty-printed JSON to temp file
+tmpfile=$(mktemp /tmp/vissm.XXXXXX.json)
+echo "$param_value" | jq '.' >"$tmpfile"
+
+original_checksum=$(md5sum "$tmpfile" | cut -d' ' -f1)
+
+# Edit loop
+while true; do
+  $EDITOR "$tmpfile"
+
+  if [[ ! -s "$tmpfile" ]]; then
+    echo "File is empty. Aborted."
+    exit 1
+  fi
+
+  new_checksum=$(md5sum "$tmpfile" | cut -d' ' -f1)
+  if [[ "$new_checksum" == "$original_checksum" ]]; then
+    echo "No changes made."
+    exit 0
+  fi
+
+  if jq_error=$(jq '.' "$tmpfile" 2>&1 >/dev/null); then
+    break
+  else
+    echo "Invalid JSON: $jq_error"
+    read -rp "Press Enter to re-edit, or 'q' to abort: " response
+    if [[ "$response" == "q" ]]; then
+      echo "Aborted."
+      exit 1
+    fi
+  fi
+done
+
+echo "Rollback command:"
+echo "  aws ssm get-parameter --name '$param_name' --with-decryption --query Parameter.Value --output text --version $param_version | aws ssm put-parameter --name '$param_name' --type '$param_type' --value file:///dev/stdin --overwrite"
+echo ""
+
+# Upload
+new_value=$(cat "$tmpfile")
+
+put_args=(
+  --name "$param_name"
+  --value "$new_value"
+  --type "$param_type"
+  --overwrite
+)
+
+if [[ -n "$key_id" ]]; then
+  put_args+=(--key-id "$key_id")
+fi
+
+aws ssm put-parameter "${put_args[@]}" >/dev/null
+echo "Updated $param_name (version $(
+  aws ssm get-parameter --name "$param_name" --query 'Parameter.Version' --output text
+))"
