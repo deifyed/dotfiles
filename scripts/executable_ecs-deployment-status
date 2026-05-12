@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+for cmd in aws fzf jq; do
+  command -v "$cmd" &>/dev/null || {
+    echo "Required: $cmd" >&2
+    exit 1
+  }
+done
+
+pick() {
+  local label="$1"
+  local items="$2"
+  local count
+  count=$(echo "$items" | wc -l)
+
+  if [[ $count -eq 0 || -z "$items" ]]; then
+    echo "No ${label,,} found" >&2
+    exit 1
+  elif [[ $count -eq 1 ]]; then
+    echo "$items" | head -1
+  else
+    echo "$items" | fzf --prompt="$label: "
+  fi
+}
+
+clusters=$(aws ecs list-clusters --query "clusterArns[*]" --output json |
+  jq -r '.[]' |
+  sed 's|.*/||')
+cluster=$(pick "Cluster" "$clusters")
+
+services=$(aws ecs list-services --cluster "$cluster" --query "serviceArns[*]" --output json |
+  jq -r '.[]' |
+  sed 's|.*/||')
+service=$(pick "Service" "$services")
+
+interval=5
+
+while true; do
+  payload=$(aws ecs describe-services \
+    --cluster "$cluster" \
+    --services "$service" \
+    --output json)
+
+  deployments_json=$(echo "$payload" | jq '.services[0].deployments | sort_by(.createdAt) | reverse')
+  deployment=$(echo "$deployments_json" | jq '.[0]')
+  deployment_count=$(echo "$deployments_json" | jq 'length')
+
+  if [[ "$deployment" == "null" || -z "$deployment" ]]; then
+    echo "No deployments found for $service" >&2
+    exit 1
+  fi
+
+  family=$(echo "$deployment" | jq -r '.taskDefinition | sub(".*task-definition/"; "") | sub(":.*"; "")')
+  current_rev=$(echo "$deployment" | jq -r '.taskDefinition | sub(".*:"; "")')
+
+  clear
+  printf 'Cluster:  %s\n' "$cluster"
+  printf 'Service:  %s\n' "$service"
+  printf 'Updated:  %s\n\n' "$(date '+%Y-%m-%d %H:%M:%S')"
+
+  {
+    printf 'Version\tDesired\tRunning\tPending\tFailed\n'
+    echo "$deployments_json" | jq -r '.[] | [
+      (.taskDefinition | sub(".*task-definition/"; "")),
+      (.desiredCount|tostring),
+      (.runningCount|tostring),
+      (.pendingCount|tostring),
+      (.failedTasks|tostring)
+    ] | @tsv'
+    if [[ $deployment_count -lt 2 && $current_rev -gt 1 ]]; then
+      printf '%s:%d\t0\t0\t0\t0\n' "$family" "$((current_rev - 1))"
+    fi
+  } | column -t -s $'\t'
+
+  echo
+  echo "Recent events:"
+  echo "$payload" | jq -r '.services[0].events[:3][] | "  \(.createdAt)  \(.message)"'
+
+  state=$(echo "$deployment" | jq -r '.rolloutState')
+  if [[ "$state" == "COMPLETED" || "$state" == "FAILED" ]]; then
+    echo
+    echo "Rollout finished: $state"
+    exit 0
+  fi
+
+  echo
+  echo "Refreshing in ${interval}s — Ctrl-C to stop."
+  sleep "$interval"
+done
