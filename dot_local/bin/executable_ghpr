@@ -30,8 +30,6 @@ if [[ -n "$ISSUE_PREFIX" ]]; then
   TITLE="${ISSUE_PREFIX} ${TITLE}"
 fi
 
-echo $TITLE
-
 cat <<EOF >${TMP_FILEPATH}
 $TITLE
 
