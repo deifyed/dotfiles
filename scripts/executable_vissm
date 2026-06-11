@@ -10,6 +10,19 @@ done
 
 EDITOR="${EDITOR:-nvim}"
 
+plaintext=false
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+  -p | --plaintext) plaintext=true ;;
+  *)
+    echo "Usage: ${0##*/} [-p|--plaintext]" >&2
+    echo "  -p, --plaintext  Skip JSON formatting and validation" >&2
+    exit 1
+    ;;
+  esac
+  shift
+done
+
 tmpfile=""
 cleanup() { [[ -n "$tmpfile" && -f "$tmpfile" ]] && rm -f "$tmpfile"; }
 trap cleanup EXIT
@@ -40,9 +53,14 @@ param_json=$(aws ssm get-parameter \
 param_value=$(echo "$param_json" | jq -r '.Parameter.Value')
 param_version=$(echo "$param_json" | jq -r '.Parameter.Version')
 
-# Write pretty-printed JSON to temp file
-tmpfile=$(mktemp /tmp/vissm.XXXXXX.json)
-echo "$param_value" | jq '.' >"$tmpfile"
+# Write pretty-printed JSON to temp file (raw value in plaintext mode)
+if [[ "$plaintext" == true ]]; then
+  tmpfile=$(mktemp /tmp/vissm.XXXXXX.json)
+  echo "$param_value" >"$tmpfile"
+else
+  tmpfile=$(mktemp /tmp/vissm.XXXXXX.json)
+  echo "$param_value" | jq '.' >"$tmpfile"
+fi
 
 original_checksum=$(md5sum "$tmpfile" | cut -d' ' -f1)
 
@@ -61,7 +79,7 @@ while true; do
     exit 0
   fi
 
-  if jq_error=$(jq '.' "$tmpfile" 2>&1 >/dev/null); then
+  if [[ "$plaintext" == true ]] || jq_error=$(jq '.' "$tmpfile" 2>&1 >/dev/null); then
     break
   else
     echo "Invalid JSON: $jq_error"
