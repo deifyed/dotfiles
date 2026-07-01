@@ -65,6 +65,7 @@ vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPost" }, {
     local replacements = {
       ["{{title}}"] = filename:gsub("-", " "),
       ["{{filename}}"] = filename,
+      ["{{extension}}"] = vim.fn.expand("%:e"),
     }
 
     for placeholder, value in pairs(replacements) do
