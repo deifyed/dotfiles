@@ -237,8 +237,10 @@ nvim-config-cleaner() {
   rm -rf ${HOME}/.cache/nvim
 }
 
-clawd() {
-  . /tmp/claude_env
+cdr() {
+  local codedir="${HOME}/output/code"
 
-  claude
+  local target=$(/usr/bin/eza -1D $codedir | fzf)
+
+  cd $codedir/$target
 }
