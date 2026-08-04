@@ -32,8 +32,6 @@ fi
 
 cat <<EOF >${TMP_FILEPATH}
 $TITLE
-
-This PR 
 EOF
 
 "${EDITOR:-vi}" "${TMP_FILEPATH}"
