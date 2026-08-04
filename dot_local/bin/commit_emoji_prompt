@@ -21,6 +21,10 @@ emojis = [
         "emoji": "👌",
         "description": "Use",
     },
+    {  # For small updates
+        "emoji": "👌",
+        "description": "Update",
+    },
     {  # For refactoring
         "emoji": "🚧",
         "description": "Refactor",
