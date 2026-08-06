@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-cluster=$(sh -c "aws ecs list-clusters | jq -r '.clusterArns[]' | cut -d'/' -f2 | fzf")
-service=$(sh -c "aws ecs list-services --cluster $cluster | jq -r '.serviceArns[]' | cut -d'/' -f3 | fzf")
+cluster=$(aws ecs list-clusters | jq -r '.clusterArns[]' | cut -d'/' -f2 | fzf)
+service=$(aws ecs list-services --cluster "$cluster" | jq -r '.serviceArns[]' | cut -d'/' -f3 | fzf)
 
 aws ecs update-service \
-  --cluster $cluster \
-  --service $service \
+  --cluster "$cluster" \
+  --service "$service" \
   --force-new-deployment >/dev/null
+
+echo "Restarted $service on $cluster"
