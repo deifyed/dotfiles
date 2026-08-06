@@ -239,8 +239,12 @@ nvim-config-cleaner() {
 
 cdr() {
   local codedir="${HOME}/output/code"
+  local flags=()
 
-  local target=$(/usr/bin/eza -1D $codedir | fzf)
+  [ -n "$1" ] && flags=(-q $1)
 
-  cd $codedir/$target
+  local target
+  target=$(/usr/bin/eza -1D "$codedir" | fzf "${flags[@]}") || return 1
+
+  cd "$codedir/$target"
 }
