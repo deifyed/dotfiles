@@ -248,3 +248,22 @@ cdr() {
 
   cd "$codedir/$target"
 }
+
+gwan() {
+  local branch=$1
+  if [ -z "$branch" ]; then
+    echo "usage: gwan <branch>" >&2
+    return 1
+  fi
+
+  local root
+  root=$(git rev-parse --path-format=absolute --git-common-dir) || return 1
+  root=$(dirname "$root")   # strips /.git -> repo toplevel
+  local mainbranch=$(git symbolic-ref --short refs/remotes/origin/HEAD)
+
+  echo "Branch: $branch"
+  echo "Root: $root"
+  git fetch origin || return 1
+  git worktree add -b "$branch" --no-track "$root/.worktree/$branch" $mainbranch || return 1
+  cd "$root/.worktrees/$branch"
+}
