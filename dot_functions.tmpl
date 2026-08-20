@@ -265,5 +265,5 @@ gwan() {
   echo "Root: $root"
   git fetch origin || return 1
   git worktree add -b "$branch" --no-track "$root/.worktree/$branch" $mainbranch || return 1
-  cd "$root/.worktrees/$branch"
+  cd "$root/.worktree/$branch"
 }
