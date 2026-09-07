@@ -71,7 +71,7 @@ focus_follows_mouse no
     bindsym $mod+End exec swaylock -fF  -c 000000
 
     # Kill focused window
-    bindsym $mod+q kill
+    bindsym $mod+Shift+q kill
 
     # Start your launcher
     bindsym $mod+d exec $menu
