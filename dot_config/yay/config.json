@@ -1,3 +1,5 @@
 {
-  "removemake": "yes"
+  "removemake": "yes",
+  "diffmenu": true,
+  "answerdiff": "All"
 }
