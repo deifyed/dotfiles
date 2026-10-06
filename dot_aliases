@@ -20,6 +20,7 @@ alias vlt='vault'
 alias clip64="wl-paste -n | base64 -w 0 | wl-copy"
 alias ktfmt="java -jar $HOME/.local/bin/ktfmt-0.44-jar-with-dependencies.jar"
 alias gpsynchere="sudo gpctl cp \"/100GOPRO/*\" ."
+alias sctl="systemctl"
 
 ## Command tweaks
 
