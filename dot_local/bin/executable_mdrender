@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# Usage: mdrender file.md  — renders markdown + mermaid in a firefoxpwa app window
+set -euo pipefail
+f=$(realpath "$1")
+out=$(mktemp --suffix=.html)
+python3 -I - "$f" "$out" <<'PY'
+import sys, json, os, html
+src, out = sys.argv[1], sys.argv[2]
+md = json.dumps(open(src, encoding="utf-8").read()).replace("</", "<\\/")
+open(out, "w").write(f"""<!doctype html><meta charset="utf-8">
+<title>{html.escape(os.path.basename(src))}</title>
+<base href="file://{os.path.dirname(src)}/">
+<style>
+/* gruvbox dark */
+:root{{color-scheme:dark;--bg:#282828;--bg1:#3c3836;--bg2:#504945;--fg:#ebdbb2;--gray:#928374;
+  --yellow:#fabd2f;--blue:#83a598;--aqua:#8ec07c;--orange:#fe8019}}
+html{{background:var(--bg)}}
+body{{max-width:980px;margin:0 auto;padding:32px;background:var(--bg);color:var(--fg);
+  font:16px/1.6 system-ui,sans-serif}}
+h1,h2{{color:var(--yellow);border-bottom:1px solid var(--bg2);padding-bottom:.3em}}
+h3,h4,h5,h6{{color:var(--aqua)}}
+a{{color:var(--blue)}}
+code{{font-family:ui-monospace,monospace;font-size:.9em;background:var(--bg1);color:var(--orange);
+  padding:.15em .35em;border-radius:4px}}
+pre{{background:var(--bg1);padding:16px;border-radius:6px;overflow-x:auto}}
+pre code{{background:none;color:var(--fg);padding:0}}
+pre.mermaid{{background:var(--bg1);text-align:center}}
+blockquote{{margin:0;padding:0 1em;color:var(--gray);border-left:4px solid var(--bg2)}}
+table{{border-collapse:collapse}}
+th,td{{border:1px solid var(--bg2);padding:6px 13px}}
+tr:nth-child(2n){{background:#32302f}}
+hr{{border:0;border-top:1px solid var(--bg2)}}
+img{{max-width:100%}}
+</style>
+<article class="markdown-body" id="c"></article>
+<script src="https://cdn.jsdelivr.net/npm/marked@14/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+c.innerHTML = marked.parse({md});
+c.querySelectorAll("code.language-mermaid").forEach(el => {{
+  const d = document.createElement("pre"); d.className = "mermaid";
+  d.textContent = el.textContent; el.parentElement.replaceWith(d);
+}});
+mermaid.initialize({{startOnLoad:false, theme:"base", themeVariables:{{
+  darkMode:true, background:"#3c3836", fontFamily:"system-ui,sans-serif",
+  primaryColor:"#504945", primaryTextColor:"#ebdbb2", primaryBorderColor:"#d79921",
+  secondaryColor:"#665c54", tertiaryColor:"#32302f", lineColor:"#a89984", textColor:"#ebdbb2",
+  noteBkgColor:"#504945", noteTextColor:"#ebdbb2", noteBorderColor:"#d79921"
+}}}});
+mermaid.run();
+</script>""")
+PY
+# Window comes from the firefoxpwa web app named "mdrender" (own profile, address bar hidden via user.js)
+app=$(firefoxpwa profile list | sed -n 's/^- mdrender: .*(\([0-9A-Z]*\))$/\1/p' | head -1)
+[ -n "$app" ] || { echo "mdrender: no firefoxpwa web app named 'mdrender' found" >&2; exit 1; }
+exec firefoxpwa site launch "$app" --url "file://$out" >/dev/null 2>&1
