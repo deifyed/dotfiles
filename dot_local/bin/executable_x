@@ -1,0 +1,26 @@
+#!/usr/bin/bash
+work_dir=/tmp/x
+
+mkdir -p $work_dir
+
+file=$work_dir/$(date +%Y%m%dT%H%M%S)
+content=$'#!/usr/bin/bash'
+
+case "$1" in
+-p | --previous)
+  file=$(ls -t $work_dir/* 2>/dev/null | head -1)
+  [ -z "$file" ] && {
+    echo "x: no files in $work_dir" >&2
+    exit 1
+  }
+  content=$(cat "$file")
+  ;;
+esac
+
+script=$(echo "$content" | vipe) || exit 1
+[ -z "$script" ] && {
+  echo "x: empty script, aborting" >&2
+  exit 1
+}
+
+echo "$script" | tee "$file" | bash
