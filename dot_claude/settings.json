@@ -1,0 +1,49 @@
+{
+  "env": {
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-5-5",
+    "DISABLE_BUG_COMMAND": "1",
+    "DISABLE_TELEMETRY": "1"
+  },
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "allow": ["Bash(git add:*)", "Bash(git commit -m :*)", "Bash(tree:*)"],
+    "deny": [
+      "Read(**.ssh/**)",
+      "Read(.gnupg/**)",
+      "Read(.aws/**)",
+      "Read(.docker/config.json)",
+      "Read(.env**)",
+      "Read(*.pem)",
+      "Read(*.key)",
+      "Read(*.p12)",
+      "Read(*.pfx)",
+      "Read(id_rsa*)",
+      "Read(id_ed25519*)",
+      "Read(id_ecdsa*)",
+      "Read(*.crt)",
+      "Read(*.csr)",
+      "Read(.devcontainer/devcontainer.env)",
+      "Read(plan.file)"
+    ]
+  },
+  "model": "opus[1m]",
+  "enabledPlugins": {
+    "iac-platform@dig": true,
+    "punkt-designsystem@dig": true
+  },
+  "extraKnownMarketplaces": {
+    "dig": {
+      "source": {
+        "source": "github",
+        "repo": "oslokommune/claude-marketplace"
+      }
+    }
+  },
+  "effortLevel": "xhigh",
+  "enableArtifacts": false,
+  "awaySummaryEnabled": false,
+  "autoMemoryEnabled": false,
+  "theme": "dark",
+  "editorMode": "vim",
+  "preferredNotifChannel": "notifications_disabled"
+}
