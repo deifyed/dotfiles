@@ -1,0 +1,14 @@
+" Windows (tabs) shown at startup, in this order. Comma separated, no spaces.
+" Available: browse, console, directory, help, library, lists, outputs, playlist
+set windows library,lists,playlist
+
+" Window that has focus at startup
+set window playlist
+
+" Switch tabs like LazyVim buffers
+map H gT
+map L gt
+
+" Smart case search: case insensitive unless the pattern has a capital
+set ignorecase
+set smartcase
