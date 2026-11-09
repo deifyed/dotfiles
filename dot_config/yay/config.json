@@ -1,5 +1,6 @@
 {
   "removemake": "yes",
   "diffmenu": true,
-  "answerdiff": "All"
+  "answerdiff": "All",
+  "pager": "delta"
 }
