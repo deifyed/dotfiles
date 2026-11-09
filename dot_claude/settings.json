@@ -1,6 +1,8 @@
 {
   "env": {
     "ANTHROPIC_DEFAULT_OPUS_MODEL": "claude-opus-5-5",
+    "CLAUDE_CODE_MAX_OUTPUT_TOKENS": "4096",
+    "MAX_THINKING_TOKENS": "1024",
     "DISABLE_BUG_COMMAND": "1",
     "DISABLE_TELEMETRY": "1"
   },
@@ -12,6 +14,8 @@
       "Read(.gnupg/**)",
       "Read(.aws/**)",
       "Read(.docker/config.json)",
+      "Read(secrets**)",
+      "Read(.secrets**)",
       "Read(.env**)",
       "Read(*.pem)",
       "Read(*.key)",
@@ -41,9 +45,11 @@
   },
   "effortLevel": "xhigh",
   "enableArtifacts": false,
-  "awaySummaryEnabled": false,
+  "alwaysThinkingEnabled": false,
+  "tui": "fullscreen",
   "autoMemoryEnabled": false,
   "theme": "dark",
   "editorMode": "vim",
-  "preferredNotifChannel": "notifications_disabled"
+  "preferredNotifChannel": "notifications_disabled",
+  "awaySummaryEnabled": false
 }
