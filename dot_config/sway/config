@@ -224,9 +224,8 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    #status_command while ~/.config/sway/status.sh; do sleep 1; done
-    #status_command while ~/.config/sway/status_bar.py; do sleep 1; done
     status_command while status; do sleep 1; done
+    tray_output none
 
     ## Solarized
     #colors {
@@ -237,15 +236,15 @@ bar {
     #    			urgent_workspace #073642 #002b36 #dc322f
     #}
     colors {
-	# Status line font
-        statusline #a89984
-	# Status line background
-        background #282828
+      # Status line font
+      statusline #a89984
+      # Status line background
+      background #282828
 
-	# border main font
-	focused_workspace #ebdbb2 #ebdbb2 #282828
-	inactive_workspace #928374 #928374 #282828
-	urgent_workspace #fb4934 #928374 #fb4934
+      # border main font
+      focused_workspace #ebdbb2 #ebdbb2 #282828
+      inactive_workspace #928374 #928374 #282828
+      urgent_workspace #fb4934 #928374 #fb4934
     }
 }
 
